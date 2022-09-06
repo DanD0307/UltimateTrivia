@@ -59,6 +59,16 @@ object Constants {
         return images
     }
 
+    fun getUSStatesHighScores(context:Context):ArrayList<String>{
+        val sharedPreferences = context.getSharedPreferences("US States",Context.MODE_PRIVATE)
+        var hs0 = sharedPreferences.getString("0","")!!
+        var hs1 = sharedPreferences.getString("1","")!!
+        var hs2 = sharedPreferences.getString("2","")!!
+
+        val arrayList = arrayListOf(hs0,hs1,hs2)
+        return arrayList
+    }
+
     //---------------------------------------------------------------//
     //                  PRESIDENTS QUESTIONS                         //
     //---------------------------------------------------------------//
@@ -157,5 +167,55 @@ object Constants {
         return presidentsList
     }
 
+    //---------------------------------------------------------------//
+    //                  US STATES QUESTIONS                          //
+    //---------------------------------------------------------------//
+
+    fun returnStateByStateCapital(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("stateByStateCapital.txt")
+        val list = returnArrayList(IS)
+        return list
+
+    }
+
+    fun returnStateCapitalByState(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("stateByStateCapital.txt")
+        val list = returnArrayList(IS)
+        return list
+
+    }
+
+    fun returnStateGK(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("stateGK.txt")
+        val list = returnArrayList(IS)
+        return list
+
+    }
+
+    //This function takes an inputstream and returns a nice clean arraylist
+    fun returnArrayList(IS:InputStream):ArrayList<Array<ArrayList<String>>>{
+        var list = arrayListOf<Array<ArrayList<String>>>()
+
+        IS.bufferedReader().forEachLine {
+            var line = it
+            var array = line.split(",").toTypedArray()
+            var questionArray = arrayListOf(array[0])
+            var answers = arrayListOf<String>()
+
+            for (element in array){
+                if (element != array[0]){
+                    //Append this element to answers array
+                    answers.add(element)
+                }
+            }
+            var qAndA = arrayOf(questionArray,answers)
+            list.add(qAndA)
+        }
+
+        return list
+    }
 
 }

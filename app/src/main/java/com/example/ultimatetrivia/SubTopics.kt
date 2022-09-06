@@ -11,6 +11,7 @@ import com.example.ultimatetrivia.Constants.getPeriodicTableSubTopics
 import com.example.ultimatetrivia.Constants.getPresidentHighScores
 import com.example.ultimatetrivia.Constants.getPresidentImages
 import com.example.ultimatetrivia.Constants.getPresidentSubTopics
+import com.example.ultimatetrivia.Constants.getUSStatesHighScores
 import com.example.ultimatetrivia.Constants.getUSStatesImages
 import com.example.ultimatetrivia.Constants.getUSStatesSubTopics
 import com.example.ultimatetrivia.adapters.ItemAdapter
@@ -48,7 +49,7 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
         else if(a == "US States"){
             list = getUSStatesSubTopics()
             images = getUSStatesImages()
-            highScores = getPresidentHighScores(this)
+            highScores = getUSStatesHighScores(this)
         }
         else{
             list = getPresidentSubTopics()
@@ -81,6 +82,13 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
 
         if(subTopicName == "Presidents") {
             val intent = Intent(this, Quiz::class.java)
+            val arr = arrayOf(subTopicName, position.toString())
+            intent.putExtra("1", arr)
+            startActivity(intent)
+        }
+
+        if(subTopicName == "US States") {
+            val intent = Intent(this, GenericQuiz::class.java)
             val arr = arrayOf(subTopicName, position.toString())
             intent.putExtra("1", arr)
             startActivity(intent)

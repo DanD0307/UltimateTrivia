@@ -14,12 +14,15 @@ import com.example.ultimatetrivia.Constants.returnNumberByPresidents
 import com.example.ultimatetrivia.Constants.returnPresidentsByNumber
 import com.example.ultimatetrivia.Constants.returnPresidentsByYear
 import com.example.ultimatetrivia.Constants.returnPresidentsGK
+import com.example.ultimatetrivia.Constants.returnStateByStateCapital
+import com.example.ultimatetrivia.Constants.returnStateCapitalByState
+import com.example.ultimatetrivia.Constants.returnStateGK
 import kotlinx.android.synthetic.main.activity_quiz.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class Quiz : AppCompatActivity() {
+class GenericQuiz : AppCompatActivity() {
     //Question details
     var index = 0
     var correctCounter = 0
@@ -95,7 +98,7 @@ class Quiz : AppCompatActivity() {
 
                 restartQuiz()
                 randomiseQuestions()
-                genericAskQuestion()
+                askQuestion()
             }
 
             //User has pressed continue so we ask next question
@@ -105,7 +108,7 @@ class Quiz : AppCompatActivity() {
                 etEnterAnswer.setVisibility(View.VISIBLE)
                 btConfirm.text="CONFIRM"
                 continueFlag = false
-                genericAskQuestion()
+                askQuestion()
             }
 
             //User has entered nothing so we do nothing.
@@ -134,25 +137,21 @@ class Quiz : AppCompatActivity() {
 
 
     fun getQuestions(){
-        if(position == "0") {
-            questionsList = returnPresidentsByNumber(this)
-            randomiseQuestions()
-            presidentByNumberAskQuestion()
-        }
-        else if(position == "1") {
-            questionsList = returnNumberByPresidents(this)
-            randomiseQuestions()
-            numberByPresidentAskQuestion()
-        }
-        else if(position == "2") {
-            questionsList = returnPresidentsByYear(this)
-            randomiseQuestions()
-            presidentByYearAskQuestion()
-        }
-        else if(position == "3") {
-            questionsList = returnPresidentsGK(this)
-            randomiseQuestions()
-            presidentGKAskQuestion()
+        if (subTopicName == "US States") {
+
+            if (position == "0") {
+                questionsList = returnStateByStateCapital(this)
+                randomiseQuestions()
+                askQuestion()
+            } else if (position == "1") {
+                questionsList = returnStateCapitalByState(this)
+                randomiseQuestions()
+                askQuestion()
+            } else if (position == "2") {
+                questionsList = returnStateGK(this)
+                randomiseQuestions()
+                askQuestion()
+            }
         }
     }
 
@@ -172,78 +171,7 @@ class Quiz : AppCompatActivity() {
         questionsList = randomisedList
     }
 
-    fun genericAskQuestion(){
-        if(position == "0"){
-            presidentByNumberAskQuestion()
-        }
-        else if(position == "1"){
-            numberByPresidentAskQuestion()
-        }
-        else if(position == "2"){
-            presidentByYearAskQuestion()
-        }
-        else if(position == "3"){
-            presidentGKAskQuestion()
-        }
-    }
-
-    fun presidentByNumberAskQuestion(){
-
-        //If no more questions left don't continue
-        if(index==questionsList.size){
-            runFinalScreen()
-            return
-        }
-        var question = questionsList.get(index)
-        var num = question[0].get(0)
-        answersList = question[1]
-        this.question = question
-
-        lateinit var suffix:String
-        if(num == "1" || num == "21" || num=="31" || num=="41"){
-            suffix = "st"
-        }
-        else if(num == "2" || num == "22" ||num=="32"||num=="42"){
-            suffix = "nd"
-        }
-        else if(num == "3" || num == "23" || num=="33"||num=="43"){
-            suffix = "rd"
-        }
-        else{
-            suffix = "th"
-        }
-        tvQuestionText.text="Who is the $num$suffix president of the USA"
-    }
-
-    fun numberByPresidentAskQuestion(){
-        //If no more questions left don't continue
-        if(index==questionsList.size){
-            runFinalScreen()
-            return
-        }
-        var question = questionsList.get(index)
-        var answers = question[1]
-        var name = question[0].get(0)
-        answersList = answers
-        this.question = question
-        tvQuestionText.text="What number president was $name"
-    }
-
-    fun presidentByYearAskQuestion(){
-        //If no more questions left don't continue
-        if(index==questionsList.size){
-            runFinalScreen()
-            return
-        }
-        var question = questionsList.get(index)
-        var answers = question[1]
-        var year = question[0].get(0)
-        answersList = answers
-        this.question = question
-        tvQuestionText.text="Who was the president from $year"
-    }
-
-    fun presidentGKAskQuestion(){
+    fun askQuestion(){
         //If no more questions left don't continue
         if(index==questionsList.size){
             runFinalScreen()
@@ -345,7 +273,7 @@ class Quiz : AppCompatActivity() {
 
     fun saveHighScore(highScore:String, quizName:String){
 
-        val sharedPreferences = getSharedPreferences("sharedPreferences",Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.apply{
             putString(quizName,highScore)
