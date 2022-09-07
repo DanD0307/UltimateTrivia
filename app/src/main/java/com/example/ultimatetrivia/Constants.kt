@@ -48,6 +48,16 @@ object Constants {
         return images
     }
 
+    fun getPeriodicTableHighScores(context:Context):ArrayList<String>{
+        val sharedPreferences = context.getSharedPreferences("Periodic Table",Context.MODE_PRIVATE)
+        var hs0 = sharedPreferences.getString("0","")!!
+        var hs1 = sharedPreferences.getString("1","")!!
+        var hs2 = sharedPreferences.getString("2","")!!
+
+        val arrayList = arrayListOf(hs0,hs1,hs2)
+        return arrayList
+    }
+
     fun getUSStatesSubTopics():ArrayList<String>{
 
         val subTopicTitles = arrayListOf("State by State Capital","State Capital by State","State General Knowledge","EXIT")
@@ -79,7 +89,7 @@ object Constants {
 
         IS.bufferedReader().forEachLine {
             var line = it
-            var array = line.split(",").toTypedArray()
+            var array = line.split("#").toTypedArray()
             var questionArray = arrayListOf(array[0])
             var answers = arrayListOf<String>()
 
@@ -102,7 +112,7 @@ object Constants {
 
         IS.bufferedReader().forEachLine {
             var line = it
-            var array = line.split(",").toTypedArray()
+            var array = line.split("#").toTypedArray()
             var questionArray = arrayListOf(array[0])
             var answers = arrayListOf<String>()
 
@@ -126,7 +136,7 @@ object Constants {
 
         IS.bufferedReader().forEachLine {
             var line = it
-            var array = line.split(",").toTypedArray()
+            var array = line.split("#").toTypedArray()
             var questionArray = arrayListOf(array[0])
             var answers = arrayListOf<String>()
 
@@ -150,7 +160,7 @@ object Constants {
 
         IS.bufferedReader().forEachLine {
             var line = it
-            var array = line.split(",").toTypedArray()
+            var array = line.split("#").toTypedArray()
             var questionArray = arrayListOf(array[0])
             var answers = arrayListOf<String>()
 
@@ -195,13 +205,46 @@ object Constants {
 
     }
 
+    //---------------------------------------------------------------//
+    //                  PERIODIC  TABLE QUESTIONS                    //
+    //---------------------------------------------------------------//
+
+    fun returnElementBySymbol(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("elementBySymbol.txt")
+        val list = returnArrayList(IS)
+        return list
+
+    }
+    fun returnSymbolbyElement(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("symbolByElement.txt")
+        val list = returnArrayList(IS)
+        return list
+
+    }
+    fun returnElementGK(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("elementGK.txt")
+        val list = returnArrayList(IS)
+        return list
+
+    }
+    fun returnAlloyGK(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("alloyGK.txt")
+        val list = returnArrayList(IS)
+        return list
+
+    }
+
     //This function takes an inputstream and returns a nice clean arraylist
     fun returnArrayList(IS:InputStream):ArrayList<Array<ArrayList<String>>>{
         var list = arrayListOf<Array<ArrayList<String>>>()
 
         IS.bufferedReader().forEachLine {
             var line = it
-            var array = line.split(",").toTypedArray()
+            var array = line.split("#").toTypedArray()
             var questionArray = arrayListOf(array[0])
             var answers = arrayListOf<String>()
 

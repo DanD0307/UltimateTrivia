@@ -1,2 +1,2 @@
-Montgomery is the state capital of what state,Alabama
-Juneau is the state capital of what state,Alaska
+Montgomery is the state capital of what state#Alabama
+Juneau is the state capital of what state#Alaska

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ultimatetrivia.Constants.getCapitalCitiesImages
 import com.example.ultimatetrivia.Constants.getCapitalCitiesSubTopics
+import com.example.ultimatetrivia.Constants.getPeriodicTableHighScores
 import com.example.ultimatetrivia.Constants.getPeriodicTableImages
 import com.example.ultimatetrivia.Constants.getPeriodicTableSubTopics
 import com.example.ultimatetrivia.Constants.getPresidentHighScores
@@ -44,7 +45,7 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
         else if(a == "Periodic Table"){
             list = getPeriodicTableSubTopics()
             images = getPeriodicTableImages()
-            highScores = getPresidentHighScores(this)
+            highScores = getPeriodicTableHighScores(this)
         }
         else if(a == "US States"){
             list = getUSStatesSubTopics()
@@ -87,7 +88,7 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
             startActivity(intent)
         }
 
-        if(subTopicName == "US States") {
+        if(subTopicName == "US States" || subTopicName == "Periodic Table") {
             val intent = Intent(this, GenericQuiz::class.java)
             val arr = arrayOf(subTopicName, position.toString())
             intent.putExtra("1", arr)

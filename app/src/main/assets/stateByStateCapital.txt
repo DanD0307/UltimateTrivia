@@ -1,2 +1,20 @@
-What is the state capital of Alabama,Montgomery
-What is the state capital of Alaska,Juneau
+What is the state capital of Alabama#Montgomery
+What is the state capital of Alaska#Juneau
+What is the state capital of Arizona#Phoenix
+What is the state capital of Arkansas#Little Rock
+What is the state capital of California#Sacramento
+What is the state capital of Colorado#Denver
+What is the state capital of Connecticut#Hartford
+What is the state capital of Delaware#Dover
+What is the state capital of Florida#Tallahassee
+What is the state capital of Georgia#Atlanta
+What is the state capital of Hawaii#Honolulu
+What is the state capital of Idaho#Boise
+What is the state capital of Illinois#Springfield
+What is the state capital of Indiana#Indianapolis
+What is the state capital of Iowa#Des Moines
+What is the state capital of Kansas#Topeka
+What is the state capital of Kentucky#Frankfort
+What is the state capital of Louisiana#Baton Rouge
+What is the state capital of Maine#Augusta
+What is the state capital of Maryland#Annapolis

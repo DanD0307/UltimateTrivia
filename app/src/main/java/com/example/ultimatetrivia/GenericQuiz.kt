@@ -10,13 +10,13 @@ import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import com.example.ultimatetrivia.Constants.returnNumberByPresidents
-import com.example.ultimatetrivia.Constants.returnPresidentsByNumber
-import com.example.ultimatetrivia.Constants.returnPresidentsByYear
-import com.example.ultimatetrivia.Constants.returnPresidentsGK
+import com.example.ultimatetrivia.Constants.returnAlloyGK
+import com.example.ultimatetrivia.Constants.returnElementBySymbol
+import com.example.ultimatetrivia.Constants.returnElementGK
 import com.example.ultimatetrivia.Constants.returnStateByStateCapital
 import com.example.ultimatetrivia.Constants.returnStateCapitalByState
 import com.example.ultimatetrivia.Constants.returnStateGK
+import com.example.ultimatetrivia.Constants.returnSymbolbyElement
 import kotlinx.android.synthetic.main.activity_quiz.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -149,6 +149,26 @@ class GenericQuiz : AppCompatActivity() {
                 askQuestion()
             } else if (position == "2") {
                 questionsList = returnStateGK(this)
+                randomiseQuestions()
+                askQuestion()
+            }
+        }
+
+        else if(subTopicName == "Periodic Table"){
+            if (position == "0") {
+                questionsList = returnElementBySymbol(this)
+                randomiseQuestions()
+                askQuestion()
+            } else if (position == "1") {
+                questionsList = returnSymbolbyElement(this)
+                randomiseQuestions()
+                askQuestion()
+            } else if (position == "2") {
+                questionsList = returnElementGK(this)
+                randomiseQuestions()
+                askQuestion()
+            } else if (position == "3") {
+                questionsList = returnAlloyGK(this)
                 randomiseQuestions()
                 askQuestion()
             }

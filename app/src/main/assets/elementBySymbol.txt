@@ -1,0 +1,6 @@
+What element has the symbol H?#Hydrogen
+What element has the symbol He?#Helium
+What element has the symbol Li?#Lithium
+What element has the symbol Be?#Beryllium
+What element has the symbol B?#Boron
+What element has the symbol C?#Carbon
