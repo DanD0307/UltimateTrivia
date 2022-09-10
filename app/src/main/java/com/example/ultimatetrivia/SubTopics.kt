@@ -24,12 +24,21 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
     lateinit var images:ArrayList<Int>
     lateinit var highScores:ArrayList<String>
 
+
+    //TODO Make function so it can be called from both onCreate and onRestart()/onResume()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_topics)
+        makeRecyclerView()
 
+    }
 
+    override fun onResume() {
+        super.onResume()
+        makeRecyclerView()
+    }
 
+    fun makeRecyclerView(){
         var a = intent.getStringExtra("1")
         if(a == "Presidents"){
             list = getPresidentSubTopics()
@@ -75,8 +84,6 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
         //When a button is clicked we move to the question screen
         val subTopicName = this.intent.getStringExtra("1")
         if(list.get(position) == "EXIT"){
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
             finish();
             return
         }

@@ -1,13 +1,11 @@
 package com.example.ultimatetrivia
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.KeyEvent
 import android.view.View
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ultimatetrivia.Constants.returnAlloyGK
@@ -20,6 +18,7 @@ import com.example.ultimatetrivia.Constants.returnSymbolbyElement
 import kotlinx.android.synthetic.main.activity_quiz.*
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
 
 class GenericQuiz : AppCompatActivity() {
@@ -53,14 +52,16 @@ class GenericQuiz : AppCompatActivity() {
             }
         })
 
-        //CLEAR HIGHSCORE TEMPORARY CODE
-        //val pref = getSharedPreferences("sharedPreferences",Context.MODE_PRIVATE)
-        //pref.edit().clear().commit();
+
 
 
         arr = intent.getStringArrayExtra("1") as Array<String?>
         subTopicName = arr[0]!!
         position = arr[1]!!
+
+        //CLEAR HIGHSCORE TEMPORARY CODE
+        //val pref = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
+        //pref.edit().clear().commit();
 
         //Based on what questions we need we return the list
         getQuestions()
@@ -125,13 +126,19 @@ class GenericQuiz : AppCompatActivity() {
         }
 
         btExitQuiz.setOnClickListener{
-            val intent = Intent(this, SubTopics::class.java)
-            intent.putExtra("1","Presidents")
-            startActivity(intent)
+            //TODO save data progress
             finish();
         }
         //Figure out what questions to ask - We need to retrieve data from the list of sub topics activit
         getQuestions()
+    }
+
+
+    //TODO save data progress
+    override fun onBackPressed() {
+        //Save data progress
+
+        finish()
     }
 
 
@@ -214,7 +221,7 @@ class GenericQuiz : AppCompatActivity() {
         answersList.replaceAll { it.lowercase(Locale.getDefault()) }
         var InputtedAnswer=inputtedAnswer.lowercase()
 
-        //remove spaces from end of answer
+        //remove spaces from end of answer and start of answer
         val l = InputtedAnswer.trimEnd().trimStart()
 
         if(l in answersList){
@@ -248,8 +255,21 @@ class GenericQuiz : AppCompatActivity() {
                 200 // value in milliseconds
             )
         }
+        updateProgress()
 
 
+    }
+
+    //This will update the textView of the progress and the score
+    fun updateProgress(){
+        val score = "Score:\n$correctCounter/${correctCounter+incorrectCounter}"
+        tvScore.setText(score)
+
+        val total = (correctCounter+incorrectCounter).toDouble()
+        val percent = (total/questionsList.size)*100
+        val percentRounded = percent.roundToInt()
+        val progress = "Progress:\n$percentRounded%"
+        tvProgress.setText(progress)
     }
 
     fun runFinalScreen(){
@@ -258,8 +278,6 @@ class GenericQuiz : AppCompatActivity() {
         etEnterAnswer.setVisibility(View.INVISIBLE)
         var len = questionsList.size
         tvCorrectIncorrect.setVisibility(View.INVISIBLE)
-
-        
 
         val sharedPreference =  getSharedPreferences("HIGHSCORE",Context.MODE_PRIVATE)
         var editor = sharedPreference.edit()
@@ -273,7 +291,10 @@ class GenericQuiz : AppCompatActivity() {
         endOfQuizFlag = true
 
         //Save High Score
-        saveHighScore("$correctCounter/${questionsList.size}", position)
+        //TODO only save high score if it's higher than current high score
+        val highScore = returnHighScore()
+        if (firstAttempt && correctCounter>highScore)
+            saveHighScore("$correctCounter/${questionsList.size}", position)
 
 
 
@@ -287,6 +308,8 @@ class GenericQuiz : AppCompatActivity() {
         firstAttempt = false
         questionsWrongList = arrayListOf<Array<ArrayList<String>>>()
         btConfirm.setText("Confirm")
+        tvScore.setText("Score:\n0/0")
+        tvProgress.setText("Progress:\n0%")
         etEnterAnswer.setVisibility(View.VISIBLE)
         tvCorrectIncorrect.setVisibility(View.VISIBLE)
     }
@@ -298,7 +321,14 @@ class GenericQuiz : AppCompatActivity() {
         editor.apply{
             putString(quizName,highScore)
         }.apply()
+    }
 
+    fun returnHighScore():Int{
+        val sharedPreferences = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
+        val highScore = sharedPreferences.getString(position,"-1")!!
+        val hsList = highScore.split("/")
+        val hs = hsList.get(0)
+        return hs.toInt()
     }
 
     //This function is called to make the softKeyboard disappear

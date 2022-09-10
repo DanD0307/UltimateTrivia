@@ -191,7 +191,7 @@ object Constants {
 
     fun returnStateCapitalByState(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("stateByStateCapital.txt")
+        val IS : InputStream = manager.open("statecapitalByState.txt")
         val list = returnArrayList(IS)
         return list
 
