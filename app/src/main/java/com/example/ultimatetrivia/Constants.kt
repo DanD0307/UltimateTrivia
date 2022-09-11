@@ -17,12 +17,20 @@ object Constants {
         return images
     }
     fun getPresidentHighScores(context:Context):ArrayList<String>{
-        val sharedPreferences = context.getSharedPreferences("sharedPreferences",Context.MODE_PRIVATE)
+        val sharedPreferences = context.getSharedPreferences("Presidents",Context.MODE_PRIVATE)
         var hs0 = sharedPreferences.getString("0","")!!
         var hs1 = sharedPreferences.getString("1","")!!
         var hs2 = sharedPreferences.getString("2","")!!
         var hs3 = sharedPreferences.getString("3","")!!
-
+        val arrayList = arrayListOf(hs0,hs1,hs2,hs3)
+        return arrayList
+    }
+    fun getPresidentProgressScores(context:Context):ArrayList<String>{
+        val sharedPreferences = context.getSharedPreferences("Presidents",Context.MODE_PRIVATE)
+        var hs0 = sharedPreferences.getString("ProgressCount0","")!!
+        var hs1 = sharedPreferences.getString("ProgressCount1","")!!
+        var hs2 = sharedPreferences.getString("ProgressCount2","")!!
+        var hs3 = sharedPreferences.getString("ProgressCount3","")!!
         val arrayList = arrayListOf(hs0,hs1,hs2,hs3)
         return arrayList
     }
@@ -57,6 +65,15 @@ object Constants {
         val arrayList = arrayListOf(hs0,hs1,hs2)
         return arrayList
     }
+    fun getPeriodicTableProgressScores(context:Context):ArrayList<String>{
+        val sharedPreferences = context.getSharedPreferences("Periodic Table",Context.MODE_PRIVATE)
+        var hs0 = sharedPreferences.getString("ProgressCount0","")!!
+        var hs1 = sharedPreferences.getString("ProgressCount1","")!!
+        var hs2 = sharedPreferences.getString("ProgressCount2","")!!
+
+        val arrayList = arrayListOf(hs0,hs1,hs2)
+        return arrayList
+    }
 
     fun getUSStatesSubTopics():ArrayList<String>{
 
@@ -74,6 +91,15 @@ object Constants {
         var hs0 = sharedPreferences.getString("0","")!!
         var hs1 = sharedPreferences.getString("1","")!!
         var hs2 = sharedPreferences.getString("2","")!!
+
+        val arrayList = arrayListOf(hs0,hs1,hs2)
+        return arrayList
+    }
+    fun getUSStatesProgressScores(context:Context):ArrayList<String>{
+        val sharedPreferences = context.getSharedPreferences("US States",Context.MODE_PRIVATE)
+        var hs0 = sharedPreferences.getString("ProgressCount0","")!!
+        var hs1 = sharedPreferences.getString("ProgressCount1","")!!
+        var hs2 = sharedPreferences.getString("ProgressCount2","")!!
 
         val arrayList = arrayListOf(hs0,hs1,hs2)
         return arrayList

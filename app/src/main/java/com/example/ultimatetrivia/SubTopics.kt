@@ -8,12 +8,15 @@ import com.example.ultimatetrivia.Constants.getCapitalCitiesImages
 import com.example.ultimatetrivia.Constants.getCapitalCitiesSubTopics
 import com.example.ultimatetrivia.Constants.getPeriodicTableHighScores
 import com.example.ultimatetrivia.Constants.getPeriodicTableImages
+import com.example.ultimatetrivia.Constants.getPeriodicTableProgressScores
 import com.example.ultimatetrivia.Constants.getPeriodicTableSubTopics
 import com.example.ultimatetrivia.Constants.getPresidentHighScores
 import com.example.ultimatetrivia.Constants.getPresidentImages
+import com.example.ultimatetrivia.Constants.getPresidentProgressScores
 import com.example.ultimatetrivia.Constants.getPresidentSubTopics
 import com.example.ultimatetrivia.Constants.getUSStatesHighScores
 import com.example.ultimatetrivia.Constants.getUSStatesImages
+import com.example.ultimatetrivia.Constants.getUSStatesProgressScores
 import com.example.ultimatetrivia.Constants.getUSStatesSubTopics
 import com.example.ultimatetrivia.adapters.ItemAdapter
 import kotlinx.android.synthetic.main.activity_sub_topics.*
@@ -23,6 +26,7 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
     lateinit var list:ArrayList<String>
     lateinit var images:ArrayList<Int>
     lateinit var highScores:ArrayList<String>
+    lateinit var progressScores:ArrayList<String>
 
 
     //TODO Make function so it can be called from both onCreate and onRestart()/onResume()
@@ -44,6 +48,7 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
             list = getPresidentSubTopics()
             images = getPresidentImages()
             highScores = getPresidentHighScores(this)
+            progressScores = getPresidentProgressScores(this)
             //Constants.returnPresidents(this)
         }
         else if(a == "Capital Cities"){
@@ -55,11 +60,13 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
             list = getPeriodicTableSubTopics()
             images = getPeriodicTableImages()
             highScores = getPeriodicTableHighScores(this)
+            progressScores = getPeriodicTableProgressScores(this)
         }
         else if(a == "US States"){
             list = getUSStatesSubTopics()
             images = getUSStatesImages()
             highScores = getUSStatesHighScores(this)
+            progressScores = getUSStatesProgressScores(this)
         }
         else{
             list = getPresidentSubTopics()
@@ -69,11 +76,10 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
         }
 
 
-
         //Set the LayoutManager that this recycler view will use
         recycler_view_items.layoutManager = LinearLayoutManager(this)
         //Adapter Class
-        val itemAdapter = ItemAdapter(this, list as ArrayList<String>,images,highScores,this)
+        val itemAdapter = ItemAdapter(this, list as ArrayList<String>,images,highScores,progressScores,this)
 
         //Adapter instance is set to the recyclerview to inflate the items
         recycler_view_items.adapter = itemAdapter
@@ -89,7 +95,7 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
         }
 
         if(subTopicName == "Presidents") {
-            val intent = Intent(this, Quiz::class.java)
+            val intent = Intent(this, GenericQuiz::class.java)
             val arr = arrayOf(subTopicName, position.toString())
             intent.putExtra("1", arr)
             startActivity(intent)

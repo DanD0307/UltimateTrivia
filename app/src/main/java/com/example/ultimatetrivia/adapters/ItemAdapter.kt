@@ -15,6 +15,7 @@ class ItemAdapter(
     val items: ArrayList<String>,
     val images: ArrayList<Int>,
     val highScores: ArrayList<String>,
+    val progressScores: ArrayList<String>,
     val listener: OnItemCLickListener
 
 ) :
@@ -42,6 +43,14 @@ class ItemAdapter(
             val highScore = highScores.get(position)
             if(highScore != "")
                 holder.tvHighScore.text = "Best:$highScore "
+        }catch (e:Exception){
+            val doNothing = 1
+        }
+
+        try {
+            val progressScore = progressScores.get(position)
+            if (progressScore != "")
+                holder.tvProgressScore.text=progressScore
         }catch (e:Exception){
             val doNothing = 1
         }
@@ -74,6 +83,7 @@ class ItemAdapter(
     View.OnClickListener{
         val tvItem = view.tv_item_name
         val tvHighScore = view.tvBestScore
+        val tvProgressScore = view.tvProgressDisplay
         val ivItem = view.ivRow
         val cardViewItem = view.card_view_item
 

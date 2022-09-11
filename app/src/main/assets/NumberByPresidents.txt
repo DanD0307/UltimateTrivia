@@ -1,3 +1,3 @@
-George Washington#1
-John Adams#2
-Thomas Jefferson#3
+What number president was George Washington?#1
+What number president was John Adams?#2
+What number president was Thomas Jefferson?#3

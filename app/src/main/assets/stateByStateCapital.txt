@@ -18,3 +18,33 @@ What is the state capital of Kentucky#Frankfort
 What is the state capital of Louisiana#Baton Rouge
 What is the state capital of Maine#Augusta
 What is the state capital of Maryland#Annapolis
+What is the state capital of Massachusetts#Boston
+What is the state capital of Michigan#Lansing
+What is the state capital of Minnesota#Saint Paul
+What is the state capital of Mississippi#Jackson
+What is the state capital of Missouri#Jefferson City
+What is the state capital of Montana#Helena
+What is the state capital of Nebraska#Lincoln
+What is the state capital of Nevada#Carson City
+What is the state capital of New Hampshire#Concord
+What is the state capital of New Jersey#Trenton
+What is the state capital of New Mexico#Santa Fe
+What is the state capital of New York#Albany
+What is the state capital of North Carolina#Raleigh
+What is the state capital of North Dakota#Bismarck
+What is the state capital of Ohio#Columbus
+What is the state capital of Oklahoma#Oklahoma City
+What is the state capital of Oregon#Salem
+What is the state capital of Pennsylvania#Harrisburg
+What is the state capital of Rhode Island#Providence
+What is the state capital of South Carolina#Columbia
+What is the state capital of South Dakota#Pierre
+What is the state capital of Tennessee#Nashville
+What is the state capital of Texas#Austin
+What is the state capital of Utah#Salt Lake City
+What is the state capital of Vermont#Montpelier
+What is the state capital of Virginia#Richmond
+What is the state capital of Washington#Olympia
+What is the state capital of West Virginia#Charleston
+What is the state capital of Wisconsin#Madison
+What is the state capital of Wyoming#Cheyenne

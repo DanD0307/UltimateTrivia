@@ -1,6 +1,7 @@
 package com.example.ultimatetrivia
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,9 +16,9 @@ import com.example.ultimatetrivia.Constants.returnStateByStateCapital
 import com.example.ultimatetrivia.Constants.returnStateCapitalByState
 import com.example.ultimatetrivia.Constants.returnStateGK
 import com.example.ultimatetrivia.Constants.returnSymbolbyElement
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_quiz.*
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
 
@@ -34,12 +35,13 @@ class GenericQuiz : AppCompatActivity() {
     private var questionsWrongList =  arrayListOf<Array<ArrayList<String>>>()
     private lateinit var answersList : ArrayList<String>
     private var question = arrayOf<ArrayList<String>>()
+    private var fullQuizLength = 0
 
     //Getting what type of quiz we're in
     lateinit var arr: Array<String?>
     var subTopicName = ""
     var position = ""
-    var firstAttempt = true
+    var fullQuizFlag = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,17 +56,9 @@ class GenericQuiz : AppCompatActivity() {
 
 
 
-
         arr = intent.getStringArrayExtra("1") as Array<String?>
         subTopicName = arr[0]!!
         position = arr[1]!!
-
-        //CLEAR HIGHSCORE TEMPORARY CODE
-        //val pref = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
-        //pref.edit().clear().commit();
-
-        //Based on what questions we need we return the list
-        getQuestions()
 
 
         //If enter is pressed on the editText
@@ -82,29 +76,28 @@ class GenericQuiz : AppCompatActivity() {
             var len = questionsList.size
             //IF THEY GOT 100% on QUIZ
             if (endOfQuizFlag && correctCounter == len){
-                //if(firstAttempt)
+                //if(fullQuizFlag)
                     //saveHighScore("$correctCounter/$correctCounter", position)
 
                 restartQuiz()
+                fullQuizFlag = true //Resetting the flag so a new HighScore can be set
                 getQuestions()
             }
+
             //Quiz is finished and they got less than 100%
             else if (endOfQuizFlag && correctCounter <= len){
-                //if(firstAttempt)
-                    //saveHighScore("$correctCounter/$len", position)
-
-
                 //restart with incorrect answers only
                 questionsList = questionsWrongList
-
+                var tempCor = correctCounter
                 restartQuiz()
+                //If they got 0 on the full quiz then any score should be saved as a highscore
+                if(tempCor == 0 && len == fullQuizLength)
+                    fullQuizFlag=true
                 randomiseQuestions()
                 askQuestion()
             }
-
             //User has pressed continue so we ask next question
             else if(continueFlag){
-
                 tvCorrectIncorrect.text = ""
                 etEnterAnswer.setVisibility(View.VISIBLE)
                 btConfirm.text="CONFIRM"
@@ -126,25 +119,55 @@ class GenericQuiz : AppCompatActivity() {
         }
 
         btExitQuiz.setOnClickListener{
-            //TODO save data progress
+            saveProgress()
             finish();
         }
-        //Figure out what questions to ask - We need to retrieve data from the list of sub topics activit
+        //--CLEAR HIGHSCORE TEMPORARY CODE--
+        //val pref = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
+        //pref.edit().clear().commit();
+
+        val a = restoreProgress()
+        if(a == true)
+            return
+
+
+
+        //Based on what questions we need we return the list
         getQuestions()
+
     }
 
 
-    //TODO save data progress
     override fun onBackPressed() {
-        //Save data progress
-
+        saveProgress()
         finish()
     }
 
 
 
     fun getQuestions(){
-        if (subTopicName == "US States") {
+
+        if (subTopicName == "Presidents"){
+            if(position == "0") {
+                questionsList = Constants.returnPresidentsByNumber(this)
+                randomiseQuestions()
+            }
+            else if(position == "1") {
+                questionsList = Constants.returnNumberByPresidents(this)
+                randomiseQuestions()
+            }
+            else if(position == "2") {
+                questionsList = Constants.returnPresidentsByYear(this)
+                randomiseQuestions()
+            }
+            else if(position == "3") {
+                questionsList = Constants.returnPresidentsGK(this)
+                randomiseQuestions()
+            }
+            askQuestion()
+        }
+
+        else if (subTopicName == "US States") {
 
             if (position == "0") {
                 questionsList = returnStateByStateCapital(this)
@@ -196,6 +219,7 @@ class GenericQuiz : AppCompatActivity() {
             length = questions.size
         }
         questionsList = randomisedList
+        fullQuizLength = questionsList.size
     }
 
     fun askQuestion(){
@@ -214,7 +238,6 @@ class GenericQuiz : AppCompatActivity() {
     }
 
 
-    //TODO Allow spaces in answer
     fun checkAnswer(inputtedAnswer:String){
 
         val answer = answersList.get(0)
@@ -268,7 +291,7 @@ class GenericQuiz : AppCompatActivity() {
         val total = (correctCounter+incorrectCounter).toDouble()
         val percent = (total/questionsList.size)*100
         val percentRounded = percent.roundToInt()
-        val progress = "Progress:\n$percentRounded%"
+        val progress = "Progress:\n$percentRounded%\n($index/${questionsList.size})"
         tvProgress.setText(progress)
     }
 
@@ -284,16 +307,18 @@ class GenericQuiz : AppCompatActivity() {
         editor.putInt("score",correctCounter)
         editor.commit()
 
-        if (correctCounter == len)
+        if (correctCounter == len && fullQuizFlag)
             tvQuestionText.setText("You got 100% well done! Do you want to do the quiz again?")
+        else if(correctCounter == len && fullQuizFlag != true){
+            tvQuestionText.setText("You got 100% (Of the SubQuiz) well done! Do you want to do the quiz again?")
+        }
         else
             tvQuestionText.setText("You got $correctCounter/$len. \n \n Do you want to redo the quiz with the questions you got wrong?")
         endOfQuizFlag = true
 
         //Save High Score
-        //TODO only save high score if it's higher than current high score
         val highScore = returnHighScore()
-        if (firstAttempt && correctCounter>highScore)
+        if (fullQuizFlag && correctCounter>highScore)
             saveHighScore("$correctCounter/${questionsList.size}", position)
 
 
@@ -305,7 +330,7 @@ class GenericQuiz : AppCompatActivity() {
         correctCounter = 0
         incorrectCounter = 0
         endOfQuizFlag = false
-        firstAttempt = false
+        fullQuizFlag = false
         questionsWrongList = arrayListOf<Array<ArrayList<String>>>()
         btConfirm.setText("Confirm")
         tvScore.setText("Score:\n0/0")
@@ -329,6 +354,59 @@ class GenericQuiz : AppCompatActivity() {
         val hsList = highScore.split("/")
         val hs = hsList.get(0)
         return hs.toInt()
+    }
+
+    fun saveProgress(){
+        val sharedPreferences = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
+
+        //If it's the end of the quiz simply reset the progress and return
+        if(endOfQuizFlag || fullQuizFlag==false){
+            val editor = sharedPreferences.edit()
+            editor.remove("Progress$position")
+            editor.remove("ProgressCount$position")
+            editor.apply()
+            return
+        }
+
+        val newObj:ProgressDataClass = ProgressDataClass(
+            index,
+            correctCounter,
+            incorrectCounter,
+            questionsList,
+            questionsWrongList
+        )
+
+        val editor = sharedPreferences.edit()
+        val gson = Gson()
+        val json = gson.toJson(newObj)
+        editor.putString("Progress$position", json)
+        val count = correctCounter+incorrectCounter
+        val prog = "Progress: $count/${questionsList.size}"
+        editor.putString("ProgressCount$position", prog)
+        editor.apply()
+    }
+
+    fun restoreProgress():Boolean{
+        val sharedPreferences = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
+        //val progess = sharedPreferences.getString("Progress","0")!!
+
+        val gson = Gson()
+        val json: String = sharedPreferences.getString("Progress$position", "0")!!
+        println(json)
+        if(json!="0") {
+            val progress: ProgressDataClass = gson.fromJson(json, ProgressDataClass::class.java)
+            index = progress.index
+            correctCounter = progress.correctCounter
+            incorrectCounter = progress.incorrectCounter
+            questionsList = progress.questionsList
+            questionsWrongList = progress.questionsWrongList
+            updateProgress()
+            askQuestion()
+            return true
+        }
+        return false
+
+
     }
 
     //This function is called to make the softKeyboard disappear

@@ -55,6 +55,16 @@
 
         </TextView>
 
+        <TextView
+            android:id="@+id/tvProgressDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="39dp"
+            android:layout_gravity="bottom|center"
+            android:text=""
+            android:textSize="20sp" >
+
+        </TextView>
+
 
     </androidx.cardview.widget.CardView>
 
