@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ultimatetrivia.Constants.getCapitalCitiesImages
 import com.example.ultimatetrivia.Constants.getCapitalCitiesSubTopics
+import com.example.ultimatetrivia.Constants.getGKSubTopics
 import com.example.ultimatetrivia.Constants.getPeriodicTableHighScores
 import com.example.ultimatetrivia.Constants.getPeriodicTableImages
 import com.example.ultimatetrivia.Constants.getPeriodicTableProgressScores
@@ -28,8 +29,6 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
     lateinit var highScores:ArrayList<String>
     lateinit var progressScores:ArrayList<String>
 
-
-    //TODO Make function so it can be called from both onCreate and onRestart()/onResume()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_topics)
@@ -68,11 +67,16 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
             highScores = getUSStatesHighScores(this)
             progressScores = getUSStatesProgressScores(this)
         }
+        else if(a == "General Knowledge"){
+            list = getGKSubTopics()
+            images = arrayListOf(0)
+            highScores = arrayListOf("")
+            progressScores = arrayListOf("")
+        }
         else{
             list = getPresidentSubTopics()
             images = getPresidentImages()
             highScores = getPresidentHighScores(this)
-
         }
 
 
@@ -94,14 +98,14 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
             return
         }
 
-        if(subTopicName == "Presidents") {
+        if(subTopicName == "Presidents" ) {
             val intent = Intent(this, GenericQuiz::class.java)
             val arr = arrayOf(subTopicName, position.toString())
             intent.putExtra("1", arr)
             startActivity(intent)
         }
 
-        if(subTopicName == "US States" || subTopicName == "Periodic Table") {
+        if(subTopicName == "US States" || subTopicName == "Periodic Table"|| subTopicName == "General Knowledge") {
             val intent = Intent(this, GenericQuiz::class.java)
             val arr = arrayOf(subTopicName, position.toString())
             intent.putExtra("1", arr)

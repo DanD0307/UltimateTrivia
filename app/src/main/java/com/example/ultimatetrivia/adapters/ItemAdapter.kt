@@ -55,24 +55,6 @@ class ItemAdapter(
             val doNothing = 1
         }
 
-
-        //Updating background colour according to position
-        if(position % 2 ==0){
-            holder.cardViewItem.setBackgroundColor(
-                ContextCompat.getColor(
-                    context,
-                    R.color.darkGrey
-                )
-            )
-        }
-        else{
-            holder.cardViewItem.setBackgroundColor(
-                ContextCompat.getColor(
-                    context,
-                    R.color.darkGrey
-                )
-            )
-        }
     }
 
     override fun getItemCount(): Int {
@@ -104,3 +86,4 @@ class ItemAdapter(
     }
 
 }
+

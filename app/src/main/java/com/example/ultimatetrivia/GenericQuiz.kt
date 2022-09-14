@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ultimatetrivia.Constants.returnAlloyGK
 import com.example.ultimatetrivia.Constants.returnElementBySymbol
 import com.example.ultimatetrivia.Constants.returnElementGK
+import com.example.ultimatetrivia.Constants.returnGK1
 import com.example.ultimatetrivia.Constants.returnStateByStateCapital
 import com.example.ultimatetrivia.Constants.returnStateCapitalByState
 import com.example.ultimatetrivia.Constants.returnStateGK
@@ -203,6 +204,25 @@ class GenericQuiz : AppCompatActivity() {
                 askQuestion()
             }
         }
+        else if(subTopicName == "General Knowledge"){
+            if (position == "0") {
+                questionsList = returnGK1(this)
+                randomiseQuestions()
+                askQuestion()
+            } else if (position == "1") {
+                questionsList = returnSymbolbyElement(this)
+                randomiseQuestions()
+                askQuestion()
+            } else if (position == "2") {
+                questionsList = returnElementGK(this)
+                randomiseQuestions()
+                askQuestion()
+            } else if (position == "3") {
+                questionsList = returnAlloyGK(this)
+                randomiseQuestions()
+                askQuestion()
+            }
+        }
     }
 
     fun randomiseQuestions(){
@@ -358,9 +378,10 @@ class GenericQuiz : AppCompatActivity() {
 
     fun saveProgress(){
         val sharedPreferences = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
+        val count = correctCounter+incorrectCounter
 
         //If it's the end of the quiz simply reset the progress and return
-        if(endOfQuizFlag || fullQuizFlag==false){
+        if(endOfQuizFlag || fullQuizFlag==false || count ==0){
             val editor = sharedPreferences.edit()
             editor.remove("Progress$position")
             editor.remove("ProgressCount$position")
@@ -380,7 +401,7 @@ class GenericQuiz : AppCompatActivity() {
         val gson = Gson()
         val json = gson.toJson(newObj)
         editor.putString("Progress$position", json)
-        val count = correctCounter+incorrectCounter
+
         val prog = "Progress: $count/${questionsList.size}"
         editor.putString("ProgressCount$position", prog)
         editor.apply()

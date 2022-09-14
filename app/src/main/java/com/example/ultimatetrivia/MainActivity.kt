@@ -38,6 +38,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btGeneralKnowledge.setOnClickListener {
+            val intent = Intent(this, SubTopics::class.java)
+            intent.putExtra("1","General Knowledge")
+            startActivity(intent)
+        }
+
 
 
 

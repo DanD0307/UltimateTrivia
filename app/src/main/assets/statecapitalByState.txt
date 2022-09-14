@@ -1,2 +1,50 @@
 Montgomery is the state capital of what state#Alabama
 Juneau is the state capital of what state#Alaska
+Phoenix is the state capital of what state#Arizona
+Little-Rock is the state capital of what state#Arkansas
+Sacramento is the state capital of what state#California
+Denver is the state capital of what state#Colorado
+Hartford is the state capital of what state#Connecticut
+Dover is the state capital of what state#Delaware
+Tallahassee is the state capital of what state#Florida
+Atlanta is the state capital of what state#Georgia
+Honolulu is the state capital of what state#Hawaii
+Boise is the state capital of what state#Idaho
+Springfield is the state capital of what state#Illinois
+Indianapolis is the state capital of what state#Indiana
+Des Moines is the state capital of what state#Iowa
+Topeka is the state capital of what state#Kansas
+Frankfort is the state capital of what state#Kentucky
+Baton Rouge is the state capital of what state#Louisiana
+Augusta is the state capital of what state#Maine
+Annapolis is the state capital of what state#Maryland
+Boston is the state capital of what state#Massachusetts
+Lansing is the state capital of what state#Michigan
+Saint Paul is the state capital of what state#Minnesota
+Jackson is the state capital of what state#Mississippi
+Jefferson-City is the state capital of what state#Missouri
+Helena is the state capital of what state#Montana
+Lincoln is the state capital of what state#Nebraska
+Carson-City is the state capital of what state#Nevada
+Concord is the state capital of what state#New Hampshire#New-Hampshire
+Trenton is the state capital of what state#New Jersey#New-Jersey
+Santa-Fe is the state capital of what state#New Mexico#New-Mexico
+Albany is the state capital of what state#New York#New-York
+Raleigh is the state capital of what state#North Carolina#North-Carolina
+Bismarck is the state capital of what state#North Dakota#North-Dakota
+Columbus is the state capital of what state#Ohio
+Oklahoma City is the state capital of what state#Oklahoma
+Salem is the state capital of what state#Oregon
+Harrisburg is the state capital of what state#Pennsylvania
+Providence is the state capital of what state#Rhode Island#Rhode-Island
+Columbia is the state capital of what state#South Carolina#South-Carolina
+Pierre is the state capital of what state#South Dakota#South-Dakota
+Nashville is the state capital of what state#Tennessee
+Austin is the state capital of what state#Texas
+Salt Lake City is the state capital of what state#Utah
+Montpelier is the state capital of what state#Vermont
+Richmond is the state capital of what state#Virginia
+Olympia is the state capital of what state#Washington
+Charleston is the state capital of what state#West Virginia#West-Virginia
+Madison is the state capital of what state#Wisconsin
+Cheyenne is the state capital of what state#Wyoming

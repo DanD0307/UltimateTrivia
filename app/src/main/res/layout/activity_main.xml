@@ -13,26 +13,52 @@
         android:layout_width="150dp"
         android:layout_height="80dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/white"
         android:text="Periodic Table"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btPresidents" />
+
+    <Button
+        android:id="@+id/btGeneralKnowledge"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/white"
+        android:text="General Knowledge"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btPeriodicTable" />
 
     <Button
         android:id="@+id/btCapitalCities"
         android:layout_width="150dp"
         android:layout_height="80dp"
-        android:layout_marginTop="264dp"
         android:layout_marginEnd="36dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/white"
         android:text="Capital Cities"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btUSStates" />
+
+    <Button
+        android:id="@+id/btHistory"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/white"
+        android:text="History"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btCapitalCities" />
 
     <Button
         android:id="@+id/btPresidents"

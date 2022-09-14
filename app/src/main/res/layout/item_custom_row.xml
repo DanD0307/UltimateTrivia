@@ -59,9 +59,10 @@
             android:id="@+id/tvProgressDisplay"
             android:layout_width="wrap_content"
             android:layout_height="39dp"
-            android:layout_gravity="bottom|center"
+            android:layout_gravity="bottom|left"
+            android:paddingLeft="95dp"
             android:text=""
-            android:textSize="20sp" >
+            android:textSize="20sp">
 
         </TextView>
 
