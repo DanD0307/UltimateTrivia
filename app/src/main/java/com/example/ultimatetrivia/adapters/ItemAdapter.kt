@@ -8,6 +8,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ultimatetrivia.R
 import kotlinx.android.synthetic.main.item_custom_row.view.*
+import kotlinx.android.synthetic.main.item_custom_row.view.card_view_item
+import kotlinx.android.synthetic.main.item_custom_row_text.view.*
 import java.lang.Exception
 
 class ItemAdapter(
@@ -22,17 +24,41 @@ class ItemAdapter(
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder (
-            LayoutInflater.from(context).inflate(R.layout.item_custom_row,
-                parent,
-                false)
-            )
+
+        var layoutInflater = LayoutInflater.from(parent.context)
+        var view:View
+
+        if(viewType == 1){
+            view = layoutInflater.inflate(R.layout.item_custom_row,parent,false)
+            return ViewHolder(view)
+        }
+        else{
+            view = layoutInflater.inflate(R.layout.item_custom_row_text,parent,false)
+            return ViewHolder(view)
+        }
+    }
+
+
+    override fun getItemViewType(position: Int): Int {
+        if(images.size == 0){
+            return 0
+        }
+        else{
+            return 1
+        }
+    }
+
+    override fun onBindViewHolder(holder: ItemAdapter.ViewHolder, position: Int) {
+
+        val item = items.get(position)
+
+        if(images.size==0){
+            holder.textViewRowTitle.text=item
+            return
         }
 
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val item = items.get(position)
         holder.tvItem.text = item
         if(position<images.size) {
             val image = images.get(position)
@@ -68,6 +94,7 @@ class ItemAdapter(
         val tvProgressScore = view.tvProgressDisplay
         val ivItem = view.ivRow
         val cardViewItem = view.card_view_item
+        val textViewRowTitle = view.tv_text_row_title
 
         init {
             view.setOnClickListener(this)

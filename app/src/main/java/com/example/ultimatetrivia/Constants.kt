@@ -107,7 +107,7 @@ object Constants {
 
     fun getGKSubTopics():ArrayList<String>{
 
-        val subTopicTitles = arrayListOf("GK Quiz 1","GK Quiz 2","GK Quiz 3","GK Quiz 4","GK Quiz 5","EXIT")
+        val subTopicTitles = arrayListOf("General Knowledge Quiz 1","General Knowledge Quiz 2","GK Quiz 3","GK Quiz 4","GK Quiz 5","EXIT")
         return subTopicTitles
     }
 
@@ -277,6 +277,13 @@ object Constants {
     fun returnGK1(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
         val IS : InputStream = manager.open("gk1.txt")
+        val list = returnArrayList(IS)
+        return list
+    }
+
+    fun returnGK2(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("gk2.txt")
         val list = returnArrayList(IS)
         return list
     }

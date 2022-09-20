@@ -13,12 +13,18 @@ import com.example.ultimatetrivia.Constants.returnAlloyGK
 import com.example.ultimatetrivia.Constants.returnElementBySymbol
 import com.example.ultimatetrivia.Constants.returnElementGK
 import com.example.ultimatetrivia.Constants.returnGK1
+import com.example.ultimatetrivia.Constants.returnGK2
 import com.example.ultimatetrivia.Constants.returnStateByStateCapital
 import com.example.ultimatetrivia.Constants.returnStateCapitalByState
 import com.example.ultimatetrivia.Constants.returnStateGK
 import com.example.ultimatetrivia.Constants.returnSymbolbyElement
+import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalByCountryAll
+import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalByCountryEasy
+import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalByCountryHard
+import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalByCountryMedium
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_quiz.*
+import java.lang.Exception
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -42,6 +48,7 @@ class GenericQuiz : AppCompatActivity() {
     lateinit var arr: Array<String?>
     var subTopicName = ""
     var position = ""
+    var innerPosition = ""
     var fullQuizFlag = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +67,12 @@ class GenericQuiz : AppCompatActivity() {
         arr = intent.getStringArrayExtra("1") as Array<String?>
         subTopicName = arr[0]!!
         position = arr[1]!!
+        try {
+            innerPosition = arr[2]!!
+        }
+        catch (e: Exception){
+            innerPosition = ""
+        }
 
 
         //If enter is pressed on the editText
@@ -123,6 +136,11 @@ class GenericQuiz : AppCompatActivity() {
             saveProgress()
             finish();
         }
+        btResetQuiz.setOnClickListener{
+            restartQuiz()
+            fullQuizFlag = true
+            getQuestions()
+        }
         //--CLEAR HIGHSCORE TEMPORARY CODE--
         //val pref = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
         //pref.edit().clear().commit();
@@ -147,6 +165,10 @@ class GenericQuiz : AppCompatActivity() {
 
 
     fun getQuestions(){
+
+        println("----------------------------------------------------")
+        println("SUBTOPICNAME:$subTopicName  position:$position innerposition: $innerPosition")
+        println("----------------------------------------------------")
 
         if (subTopicName == "Presidents"){
             if(position == "0") {
@@ -210,7 +232,7 @@ class GenericQuiz : AppCompatActivity() {
                 randomiseQuestions()
                 askQuestion()
             } else if (position == "1") {
-                questionsList = returnSymbolbyElement(this)
+                questionsList = returnGK2(this)
                 randomiseQuestions()
                 askQuestion()
             } else if (position == "2") {
@@ -222,7 +244,34 @@ class GenericQuiz : AppCompatActivity() {
                 randomiseQuestions()
                 askQuestion()
             }
+
         }
+        else if (subTopicName == "Capital Cities"){
+            if(position == "0"){
+                if(innerPosition == "0"){
+                    questionsList = getEuropeanCapitalByCountryEasy(this)
+                    randomiseQuestions()
+                    askQuestion()
+                }
+                else if(innerPosition == "1"){
+                    questionsList = getEuropeanCapitalByCountryMedium(this)
+                    randomiseQuestions()
+                    askQuestion()
+                }
+                else if(innerPosition == "2"){
+                    questionsList = getEuropeanCapitalByCountryHard(this)
+                    randomiseQuestions()
+                    askQuestion()
+                }
+                else if(innerPosition == "3"){
+                    questionsList = getEuropeanCapitalByCountryAll(this)
+                    randomiseQuestions()
+                    askQuestion()
+                }
+            }
+        }
+
+
     }
 
     fun randomiseQuestions(){
@@ -413,7 +462,6 @@ class GenericQuiz : AppCompatActivity() {
 
         val gson = Gson()
         val json: String = sharedPreferences.getString("Progress$position", "0")!!
-        println(json)
         if(json!="0") {
             val progress: ProgressDataClass = gson.fromJson(json, ProgressDataClass::class.java)
             index = progress.index

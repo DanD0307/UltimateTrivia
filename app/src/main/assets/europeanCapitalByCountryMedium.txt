@@ -1,0 +1,19 @@
+What is the capital city of Belarus?#Minsk
+What is the capital city of Hungary?#Budapest
+What is the capital city of Austria?#Vienna
+What is the capital city of Norway?#Oslo
+What is the capital city of Sweden?#Stockholm
+What is the capital city of Denmark?#Copenhagen
+What is the capital city of Serbia#Belgrade
+What is the capital city of Bosnia and Herzegovina?#Sarajevo
+What is the capital city of Malta?#Valletta
+What is the capital city of Andorra#Andorra La Vella
+What is the capital city of Finland?#Helsinki
+What is the capital city of Ukraine?#Kyiv#Kiev
+What is the capital city of Romania?#Bucharest
+What is the capital city of Switzerland?#Bern
+What is the capital city of Latvia?#Riga
+What is the capital city of Czech republic?#Prague
+What is the capital city of Croatia?#Zagreb
+What is the capital city of Luxembourg?#Luxembourg#Luxembourg City
+What is the capital city of San Marino?#San Marino#San Marino City

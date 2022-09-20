@@ -19,8 +19,10 @@ import com.example.ultimatetrivia.Constants.getUSStatesHighScores
 import com.example.ultimatetrivia.Constants.getUSStatesImages
 import com.example.ultimatetrivia.Constants.getUSStatesProgressScores
 import com.example.ultimatetrivia.Constants.getUSStatesSubTopics
+import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalCitiesSubTopics
 import com.example.ultimatetrivia.adapters.ItemAdapter
 import kotlinx.android.synthetic.main.activity_sub_topics.*
+import java.lang.Exception
 
 class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
 
@@ -36,24 +38,39 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
 
     }
 
+    //This refreshes the recyclerview when the user backs up from the previous activity
     override fun onResume() {
         super.onResume()
         makeRecyclerView()
     }
 
     fun makeRecyclerView(){
+
+        //This try statement will only work if we're in a the subtopic of the subtopics.
+        try{
+            var b = intent.getStringArrayExtra("1") as Array<String?>
+            var subTopicName = b[0]!!
+            var position = b[1]!!
+            subSubTopicMakeRecyclerView(subTopicName,position)
+            return
+        }
+        catch (e: Exception){
+            val doNothing = 1
+        }
+
+
         var a = intent.getStringExtra("1")
         if(a == "Presidents"){
             list = getPresidentSubTopics()
             images = getPresidentImages()
             highScores = getPresidentHighScores(this)
             progressScores = getPresidentProgressScores(this)
-            //Constants.returnPresidents(this)
         }
         else if(a == "Capital Cities"){
             list = getCapitalCitiesSubTopics()
             images = getCapitalCitiesImages()
-            highScores = getPresidentHighScores(this)
+            highScores = arrayListOf("")
+            progressScores = arrayListOf("")
         }
         else if(a == "Periodic Table"){
             list = getPeriodicTableSubTopics()
@@ -69,7 +86,7 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
         }
         else if(a == "General Knowledge"){
             list = getGKSubTopics()
-            images = arrayListOf(0)
+            images = arrayListOf()
             highScores = arrayListOf("")
             progressScores = arrayListOf("")
         }
@@ -89,14 +106,63 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
         recycler_view_items.adapter = itemAdapter
     }
 
+    //This function generates the recycler view when its a sub sub topic. (SubTopic Of SubTopic)
+    fun subSubTopicMakeRecyclerView(subTopicName:String,position:String){
+
+        if(subTopicName == "Capital Cities"){
+            if (position == "0"){
+                //EUROPEAN CAPITAL CITIES
+
+                list = getEuropeanCapitalCitiesSubTopics()
+                images = arrayListOf()
+                highScores = arrayListOf("")
+                progressScores = arrayListOf("")
+            }
+        }
+
+        //Set the LayoutManager that this recycler view will use
+        recycler_view_items.layoutManager = LinearLayoutManager(this)
+        //Adapter Class
+        val itemAdapter = ItemAdapter(this, list as ArrayList<String>,images,highScores,progressScores,this)
+
+        //Adapter instance is set to the recyclerview to inflate the items
+        recycler_view_items.adapter = itemAdapter
+    }
+
+
     override fun onItemClick(position: Int) {
+        //Check whether we are in a subsubtopic
+        try{
+            var b = intent.getStringArrayExtra("1") as Array<String?>
+            var subTopicName = b[0]!!
+            var outerPosition = b[1]!!
+            var innerPosition = position
+
+            if(list.get(innerPosition) == "EXIT"){
+                finish();
+                return
+            }
+
+            val arr = arrayOf(subTopicName, outerPosition.toString(),innerPosition.toString())
+            val intent = Intent(this, GenericQuiz::class.java)
+            intent.putExtra("1", arr)
+            startActivity(intent)
+
+        }
+        catch (e: Exception){
+            val doNothing = 1
+        }
+
+
+
+
 
         //When a button is clicked we move to the question screen
-        val subTopicName = this.intent.getStringExtra("1")
         if(list.get(position) == "EXIT"){
             finish();
             return
         }
+        val subTopicName = this.intent.getStringExtra("1")
 
         if(subTopicName == "Presidents" ) {
             val intent = Intent(this, GenericQuiz::class.java)
@@ -109,6 +175,13 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
             val intent = Intent(this, GenericQuiz::class.java)
             val arr = arrayOf(subTopicName, position.toString())
             intent.putExtra("1", arr)
+            startActivity(intent)
+        }
+
+        if(subTopicName == "Capital Cities"){
+            val intent = Intent(this, SubTopics::class.java)
+            val arr = arrayOf(subTopicName, position.toString())
+            intent.putExtra("1",arr)
             startActivity(intent)
         }
     }

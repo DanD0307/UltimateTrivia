@@ -1,0 +1,14 @@
+What is the capital city of France?#Paris
+What is the capital city of the United Kingdom?#London
+What is the capital city of the Republic of Ireland?#Dublin
+What is the capital city of Germany?#Berlin
+What is the capital city of Spain?#Madrid
+What is the capital city of Italy?#Rome
+What is the capital city of Poland?#Warsaw
+What is the capital city of Portugal?#Lisbon
+What is the capital city of Greece?#Athens
+What is the capital city of Russia?#Moscow
+What is the capital city of Belgium?#Brussels
+What is the capital city of The Netherlands?#Amsterdam
+What is the capital city of Monaco?#Monaco#Monaco City
+What is the capital city of the Vatican City?#Vatican City#Vatican#The Vatican
