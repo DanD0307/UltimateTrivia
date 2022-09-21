@@ -17,21 +17,27 @@ object Constants {
         return images
     }
     fun getPresidentHighScores(context:Context):ArrayList<String>{
-        val sharedPreferences = context.getSharedPreferences("Presidents",Context.MODE_PRIVATE)
-        var hs0 = sharedPreferences.getString("0","")!!
-        var hs1 = sharedPreferences.getString("1","")!!
-        var hs2 = sharedPreferences.getString("2","")!!
-        var hs3 = sharedPreferences.getString("3","")!!
+        var sharedPreferences = context.getSharedPreferences("Presidents,Presidents by Number",Context.MODE_PRIVATE)
+        var hs0 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("Presidents,Number by President",Context.MODE_PRIVATE)
+        var hs1 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("Presidents,President by Years",Context.MODE_PRIVATE)
+        var hs2 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("Presidents,Presidents GK",Context.MODE_PRIVATE)
+        var hs3 = sharedPreferences.getString("HighScore","")!!
         val arrayList = arrayListOf(hs0,hs1,hs2,hs3)
         return arrayList
     }
     fun getPresidentProgressScores(context:Context):ArrayList<String>{
-        val sharedPreferences = context.getSharedPreferences("Presidents",Context.MODE_PRIVATE)
-        var hs0 = sharedPreferences.getString("ProgressCount0","")!!
-        var hs1 = sharedPreferences.getString("ProgressCount1","")!!
-        var hs2 = sharedPreferences.getString("ProgressCount2","")!!
-        var hs3 = sharedPreferences.getString("ProgressCount3","")!!
-        val arrayList = arrayListOf(hs0,hs1,hs2,hs3)
+        var sharedPreferences = context.getSharedPreferences("Presidents,Presidents by Number",Context.MODE_PRIVATE)
+        var pr0 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("Presidents,Number by President",Context.MODE_PRIVATE)
+        var pr1 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("Presidents,President by Years",Context.MODE_PRIVATE)
+        var pr2 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("Presidents,Presidents GK",Context.MODE_PRIVATE)
+        var pr3 = sharedPreferences.getString("ProgressCount","")!!
+        val arrayList = arrayListOf(pr0,pr1,pr2,pr3)
         return arrayList
     }
 
@@ -57,21 +63,29 @@ object Constants {
     }
 
     fun getPeriodicTableHighScores(context:Context):ArrayList<String>{
-        val sharedPreferences = context.getSharedPreferences("Periodic Table",Context.MODE_PRIVATE)
-        var hs0 = sharedPreferences.getString("0","")!!
-        var hs1 = sharedPreferences.getString("1","")!!
-        var hs2 = sharedPreferences.getString("2","")!!
+        var sharedPreferences = context.getSharedPreferences("Periodic Table,Element by Symbol",Context.MODE_PRIVATE)
+        val hs0 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("Periodic Table,Symbol by Element",Context.MODE_PRIVATE)
+        val hs1 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("Periodic Table,Element General Knowledge",Context.MODE_PRIVATE)
+        val hs2 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("Alloy General Knowledge",Context.MODE_PRIVATE)
+        val hs3 = sharedPreferences.getString("HighScore","")!!
 
-        val arrayList = arrayListOf(hs0,hs1,hs2)
+        val arrayList = arrayListOf(hs0,hs1,hs2,hs3)
         return arrayList
     }
     fun getPeriodicTableProgressScores(context:Context):ArrayList<String>{
-        val sharedPreferences = context.getSharedPreferences("Periodic Table",Context.MODE_PRIVATE)
-        var hs0 = sharedPreferences.getString("ProgressCount0","")!!
-        var hs1 = sharedPreferences.getString("ProgressCount1","")!!
-        var hs2 = sharedPreferences.getString("ProgressCount2","")!!
+        var sharedPreferences = context.getSharedPreferences("Periodic Table,Element by Symbol",Context.MODE_PRIVATE)
+        val pr0 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("Periodic Table,Symbol by Element",Context.MODE_PRIVATE)
+        val pr1 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("Periodic Table,Element General Knowledge",Context.MODE_PRIVATE)
+        val pr2 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("Alloy General Knowledge",Context.MODE_PRIVATE)
+        val pr3 = sharedPreferences.getString("ProgressCount","")!!
 
-        val arrayList = arrayListOf(hs0,hs1,hs2)
+        val arrayList = arrayListOf(pr0,pr1,pr2,pr3)
         return arrayList
     }
 
@@ -87,28 +101,63 @@ object Constants {
     }
 
     fun getUSStatesHighScores(context:Context):ArrayList<String>{
-        val sharedPreferences = context.getSharedPreferences("US States",Context.MODE_PRIVATE)
-        var hs0 = sharedPreferences.getString("0","")!!
-        var hs1 = sharedPreferences.getString("1","")!!
-        var hs2 = sharedPreferences.getString("2","")!!
+        var sharedPreferences = context.getSharedPreferences("US States,State by State Capital",Context.MODE_PRIVATE)
+        var hs0 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("US States,State Capital by State",Context.MODE_PRIVATE)
+        var hs1 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("US States,State General Knowledge",Context.MODE_PRIVATE)
+        var hs2 = sharedPreferences.getString("HighScore","")!!
 
         val arrayList = arrayListOf(hs0,hs1,hs2)
         return arrayList
     }
     fun getUSStatesProgressScores(context:Context):ArrayList<String>{
-        val sharedPreferences = context.getSharedPreferences("US States",Context.MODE_PRIVATE)
-        var hs0 = sharedPreferences.getString("ProgressCount0","")!!
-        var hs1 = sharedPreferences.getString("ProgressCount1","")!!
-        var hs2 = sharedPreferences.getString("ProgressCount2","")!!
+        var sharedPreferences = context.getSharedPreferences("US States,State by State Capital",Context.MODE_PRIVATE)
+        var pr0 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("US States,State Capital by State",Context.MODE_PRIVATE)
+        var pr1 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("US States,State General Knowledge",Context.MODE_PRIVATE)
+        var pr2 = sharedPreferences.getString("ProgressCount","")!!
 
-        val arrayList = arrayListOf(hs0,hs1,hs2)
+        val arrayList = arrayListOf(pr0,pr1,pr2)
         return arrayList
     }
 
     fun getGKSubTopics():ArrayList<String>{
 
-        val subTopicTitles = arrayListOf("General Knowledge Quiz 1","General Knowledge Quiz 2","GK Quiz 3","GK Quiz 4","GK Quiz 5","EXIT")
+        val subTopicTitles = arrayListOf("General Knowledge Quiz 1","General Knowledge Quiz 2","General Knowledge Quiz 3","General Knowledge Quiz 4","General Knowledge Quiz 5","EXIT")
         return subTopicTitles
+    }
+    fun getGKHighScores(context:Context):ArrayList<String>{
+        var sharedPreferences = context.getSharedPreferences("General Knowledge,General Knowledge Quiz 1",Context.MODE_PRIVATE)
+        var hs0 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("General Knowledge,General Knowledge Quiz 2",Context.MODE_PRIVATE)
+        var hs1 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("General Knowledge,General Knowledge Quiz 3",Context.MODE_PRIVATE)
+        var hs2 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("General Knowledge,General Knowledge Quiz 4",Context.MODE_PRIVATE)
+        var hs3 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("General Knowledge,General Knowledge Quiz 5",Context.MODE_PRIVATE)
+        var hs4 = sharedPreferences.getString("HighScore","")!!
+
+        val arrayList = arrayListOf(hs0,hs1,hs2,hs3,hs4)
+        return arrayList
+    }
+
+    fun getGKProgressScores(context:Context):ArrayList<String>{
+        var sharedPreferences = context.getSharedPreferences("General Knowledge,General Knowledge Quiz 1",Context.MODE_PRIVATE)
+        var pr0 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("General Knowledge,General Knowledge Quiz 2",Context.MODE_PRIVATE)
+        var pr1 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("General Knowledge,General Knowledge Quiz 3",Context.MODE_PRIVATE)
+        var pr2 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("General Knowledge,General Knowledge Quiz 4",Context.MODE_PRIVATE)
+        var pr3 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("General Knowledge,General Knowledge Quiz 5",Context.MODE_PRIVATE)
+        var pr4 = sharedPreferences.getString("ProgressCount","")!!
+
+        val arrayList = arrayListOf(pr0,pr1,pr2,pr3,pr4)
+        return arrayList
     }
 
     //---------------------------------------------------------------//
@@ -284,6 +333,12 @@ object Constants {
     fun returnGK2(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
         val IS : InputStream = manager.open("gk2.txt")
+        val list = returnArrayList(IS)
+        return list
+    }
+    fun returnGK3(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("gk3.txt")
         val list = returnArrayList(IS)
         return list
     }

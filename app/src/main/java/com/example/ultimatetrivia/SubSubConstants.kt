@@ -9,8 +9,38 @@ object SubSubConstants{
 
     fun getEuropeanCapitalCitiesSubTopics():ArrayList<String>{
 
-        val subTopicTitles = arrayListOf("Capital by Country Easy","Capital By Country Medium","Capital By Country Hard","Capital By Country All","EXIT")
+        val subTopicTitles = arrayListOf("Capital By Country Easy","Capital By Country Medium","Capital By Country Hard","Capital By Country All","EXIT")
         return subTopicTitles
+    }
+
+
+    //EUROPEAN SUB SUB HIGHSCORES
+    fun getEuropeanCapitalCitiesHighScores(context:Context):ArrayList<String>{
+        var sharedPreferences = context.getSharedPreferences("Capital Cities,European Capital Cities,Capital By Country Easy",Context.MODE_PRIVATE)
+        val hs0 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("Capital Cities,European Capital Cities,Capital By Country Medium",Context.MODE_PRIVATE)
+        val hs1 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("Capital Cities,European Capital Cities,Capital By Country Hard",Context.MODE_PRIVATE)
+        val hs2 = sharedPreferences.getString("HighScore","")!!
+        sharedPreferences = context.getSharedPreferences("Capital Cities,European Capital Cities,Capital By Country All",Context.MODE_PRIVATE)
+        val hs3 = sharedPreferences.getString("HighScore","")!!
+
+        val arrayList = arrayListOf(hs0,hs1,hs2,hs3)
+        return arrayList
+    }
+
+    fun getEuropeanCapitalCitiesProgressCount(context:Context):ArrayList<String>{
+        var sharedPreferences = context.getSharedPreferences("Capital Cities,European Capital Cities,Capital By Country Easy",Context.MODE_PRIVATE)
+        val pr0 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("Capital Cities,European Capital Cities,Capital By Country Medium",Context.MODE_PRIVATE)
+        val pr1 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("Capital Cities,European Capital Cities,Capital By Country Hard",Context.MODE_PRIVATE)
+        val pr2 = sharedPreferences.getString("ProgressCount","")!!
+        sharedPreferences = context.getSharedPreferences("Capital Cities,European Capital Cities,Capital By Country All",Context.MODE_PRIVATE)
+        val pr3 = sharedPreferences.getString("ProgressCount","")!!
+
+        val arrayList = arrayListOf(pr0,pr1,pr2,pr3)
+        return arrayList
     }
 
 

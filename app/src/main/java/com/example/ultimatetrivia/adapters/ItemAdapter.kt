@@ -49,16 +49,36 @@ class ItemAdapter(
     }
 
     override fun onBindViewHolder(holder: ItemAdapter.ViewHolder, position: Int) {
-
         val item = items.get(position)
 
+        //THIS PART RUNS FOR THE CUSTOM ROW TEXT VIEW
         if(images.size==0){
             holder.textViewRowTitle.text=item
+            try {
+                val highScore=highScores.get(position)
+                if(highScore != "")
+                    holder.textViewRowHighscore.text="Best:$highScore "
+            }
+            catch (e:Exception){
+                val doNothing = 1
+                println("YO THE LIST IS EMPTY MANNNn")
+            }
+            try {
+                val progressScore = progressScores.get(position)
+                if(progressScore != "")
+                    holder.textViewRowProgressScore.text= " "+progressScore
+            }
+            catch (e:Exception){
+                val doNothing = 1
+                println("YO THE LIST IS EMPTY MANNNn")
+            }
             return
         }
 
 
 
+
+        //THIS PART RUNS FOR THE CUSTOM ROW VIEW
         holder.tvItem.text = item
         if(position<images.size) {
             val image = images.get(position)
@@ -95,6 +115,8 @@ class ItemAdapter(
         val ivItem = view.ivRow
         val cardViewItem = view.card_view_item
         val textViewRowTitle = view.tv_text_row_title
+        val textViewRowHighscore = view.tv_text_row_highscore
+        val textViewRowProgressScore = view.tv_text_row_progresscount
 
         init {
             view.setOnClickListener(this)

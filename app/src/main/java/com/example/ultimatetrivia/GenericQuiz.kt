@@ -14,6 +14,7 @@ import com.example.ultimatetrivia.Constants.returnElementBySymbol
 import com.example.ultimatetrivia.Constants.returnElementGK
 import com.example.ultimatetrivia.Constants.returnGK1
 import com.example.ultimatetrivia.Constants.returnGK2
+import com.example.ultimatetrivia.Constants.returnGK3
 import com.example.ultimatetrivia.Constants.returnStateByStateCapital
 import com.example.ultimatetrivia.Constants.returnStateCapitalByState
 import com.example.ultimatetrivia.Constants.returnStateGK
@@ -26,6 +27,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_quiz.*
 import java.lang.Exception
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
 
@@ -47,8 +49,10 @@ class GenericQuiz : AppCompatActivity() {
     //Getting what type of quiz we're in
     lateinit var arr: Array<String?>
     var subTopicName = ""
+    var uniqueQuizIdentifier = ""
     var position = ""
     var innerPosition = ""
+    var fullQuizName = ""
     var fullQuizFlag = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,15 +68,8 @@ class GenericQuiz : AppCompatActivity() {
 
 
 
-        arr = intent.getStringArrayExtra("1") as Array<String?>
-        subTopicName = arr[0]!!
-        position = arr[1]!!
-        try {
-            innerPosition = arr[2]!!
-        }
-        catch (e: Exception){
-            innerPosition = ""
-        }
+        //GETTING THE UNIQUE QUIZ IDENTIFIER
+        uniqueQuizIdentifier = intent.getStringExtra("QuizPath").toString()
 
 
         //If enter is pressed on the editText
@@ -90,8 +87,6 @@ class GenericQuiz : AppCompatActivity() {
             var len = questionsList.size
             //IF THEY GOT 100% on QUIZ
             if (endOfQuizFlag && correctCounter == len){
-                //if(fullQuizFlag)
-                    //saveHighScore("$correctCounter/$correctCounter", position)
 
                 restartQuiz()
                 fullQuizFlag = true //Resetting the flag so a new HighScore can be set
@@ -142,14 +137,12 @@ class GenericQuiz : AppCompatActivity() {
             getQuestions()
         }
         //--CLEAR HIGHSCORE TEMPORARY CODE--
-        //val pref = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
+        //val pref = getSharedPreferences(uniqueQuizIdentifier,Context.MODE_PRIVATE)
         //pref.edit().clear().commit();
 
         val a = restoreProgress()
         if(a == true)
             return
-
-
 
         //Based on what questions we need we return the list
         getQuestions()
@@ -166,112 +159,105 @@ class GenericQuiz : AppCompatActivity() {
 
     fun getQuestions(){
 
-        println("----------------------------------------------------")
-        println("SUBTOPICNAME:$subTopicName  position:$position innerposition: $innerPosition")
-        println("----------------------------------------------------")
 
-        if (subTopicName == "Presidents"){
-            if(position == "0") {
-                questionsList = Constants.returnPresidentsByNumber(this)
-                randomiseQuestions()
-            }
-            else if(position == "1") {
-                questionsList = Constants.returnNumberByPresidents(this)
-                randomiseQuestions()
-            }
-            else if(position == "2") {
-                questionsList = Constants.returnPresidentsByYear(this)
-                randomiseQuestions()
-            }
-            else if(position == "3") {
-                questionsList = Constants.returnPresidentsGK(this)
-                randomiseQuestions()
-            }
+        println("GETQUESTIONSPRINT: $uniqueQuizIdentifier")
+
+        if (uniqueQuizIdentifier == "Presidents,Presidents by Number"){
+            questionsList = Constants.returnPresidentsByNumber(this)
+            randomiseQuestions()
             askQuestion()
         }
 
-        else if (subTopicName == "US States") {
-
-            if (position == "0") {
-                questionsList = returnStateByStateCapital(this)
-                randomiseQuestions()
-                askQuestion()
-            } else if (position == "1") {
-                questionsList = returnStateCapitalByState(this)
-                randomiseQuestions()
-                askQuestion()
-            } else if (position == "2") {
-                questionsList = returnStateGK(this)
-                randomiseQuestions()
-                askQuestion()
-            }
+        if(uniqueQuizIdentifier == "Presidents,Number by President") {
+            questionsList = Constants.returnNumberByPresidents(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Presidents,President by Years") {
+            questionsList = Constants.returnPresidentsByYear(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Presidents,Presidents GK") {
+            questionsList = Constants.returnPresidentsGK(this)
+            randomiseQuestions()
+            askQuestion()
         }
 
-        else if(subTopicName == "Periodic Table"){
-            if (position == "0") {
-                questionsList = returnElementBySymbol(this)
-                randomiseQuestions()
-                askQuestion()
-            } else if (position == "1") {
-                questionsList = returnSymbolbyElement(this)
-                randomiseQuestions()
-                askQuestion()
-            } else if (position == "2") {
-                questionsList = returnElementGK(this)
-                randomiseQuestions()
-                askQuestion()
-            } else if (position == "3") {
-                questionsList = returnAlloyGK(this)
-                randomiseQuestions()
-                askQuestion()
-            }
-        }
-        else if(subTopicName == "General Knowledge"){
-            if (position == "0") {
-                questionsList = returnGK1(this)
-                randomiseQuestions()
-                askQuestion()
-            } else if (position == "1") {
-                questionsList = returnGK2(this)
-                randomiseQuestions()
-                askQuestion()
-            } else if (position == "2") {
-                questionsList = returnElementGK(this)
-                randomiseQuestions()
-                askQuestion()
-            } else if (position == "3") {
-                questionsList = returnAlloyGK(this)
-                randomiseQuestions()
-                askQuestion()
-            }
-
-        }
-        else if (subTopicName == "Capital Cities"){
-            if(position == "0"){
-                if(innerPosition == "0"){
-                    questionsList = getEuropeanCapitalByCountryEasy(this)
-                    randomiseQuestions()
-                    askQuestion()
-                }
-                else if(innerPosition == "1"){
-                    questionsList = getEuropeanCapitalByCountryMedium(this)
-                    randomiseQuestions()
-                    askQuestion()
-                }
-                else if(innerPosition == "2"){
-                    questionsList = getEuropeanCapitalByCountryHard(this)
-                    randomiseQuestions()
-                    askQuestion()
-                }
-                else if(innerPosition == "3"){
-                    questionsList = getEuropeanCapitalByCountryAll(this)
-                    randomiseQuestions()
-                    askQuestion()
-                }
-            }
+        if (uniqueQuizIdentifier == "US States,State by State Capital") {
+            questionsList = returnStateByStateCapital(this)
+            randomiseQuestions()
+            askQuestion()
         }
 
+        if (uniqueQuizIdentifier == "US States,State Capital by State") {
+            questionsList = returnStateCapitalByState(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if (uniqueQuizIdentifier == "US States,State General Knowledge") {
+            questionsList = returnStateGK(this)
+            randomiseQuestions()
+            askQuestion()
+        }
 
+        if(uniqueQuizIdentifier == "Periodic Table,Element by Symbol") {
+            questionsList = returnElementBySymbol(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if (uniqueQuizIdentifier == "Periodic Table,Symbol by Element") {
+            questionsList = returnSymbolbyElement(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if (uniqueQuizIdentifier == "Periodic Table,Element General Knowledge") {
+            questionsList = returnElementGK(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if (uniqueQuizIdentifier == "Periodic Table,Alloy General Knowledge") {
+            questionsList = returnAlloyGK(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+
+        if(uniqueQuizIdentifier == "General Knowledge,General Knowledge Quiz 1"){
+            questionsList = returnGK1(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if (uniqueQuizIdentifier == "General Knowledge,General Knowledge Quiz 2") {
+            questionsList = returnGK2(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if (uniqueQuizIdentifier == "General Knowledge,General Knowledge Quiz 3") {
+            questionsList = returnGK3(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+
+        if (uniqueQuizIdentifier == "Capital Cities,European Capital Cities,Capital By Country Easy") {
+            questionsList = getEuropeanCapitalByCountryEasy(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,European Capital Cities,Capital By Country Medium"){
+            questionsList = getEuropeanCapitalByCountryMedium(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,European Capital Cities,Capital By Country Hard"){
+            questionsList = getEuropeanCapitalByCountryHard(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,European Capital Cities,Capital By Country All"){
+            questionsList = getEuropeanCapitalByCountryAll(this)
+            randomiseQuestions()
+            askQuestion()
+        }
     }
 
     fun randomiseQuestions(){
@@ -310,13 +296,14 @@ class GenericQuiz : AppCompatActivity() {
     fun checkAnswer(inputtedAnswer:String){
 
         val answer = answersList.get(0)
-        answersList.replaceAll { it.lowercase(Locale.getDefault()) }
+        val answers = ArrayList(answersList)
+        answers.replaceAll { it.lowercase(Locale.getDefault()) }
         var InputtedAnswer=inputtedAnswer.lowercase()
 
         //remove spaces from end of answer and start of answer
         val l = InputtedAnswer.trimEnd().trimStart()
 
-        if(l in answersList){
+        if(l in answers){
             tvCorrectIncorrect.text = "Correct!"
             etEnterAnswer.text.clear()
             etEnterAnswer.setVisibility(View.INVISIBLE)
@@ -388,7 +375,7 @@ class GenericQuiz : AppCompatActivity() {
         //Save High Score
         val highScore = returnHighScore()
         if (fullQuizFlag && correctCounter>highScore)
-            saveHighScore("$correctCounter/${questionsList.size}", position)
+            saveHighScore("$correctCounter/${questionsList.size}", uniqueQuizIdentifier)
 
 
 
@@ -410,30 +397,30 @@ class GenericQuiz : AppCompatActivity() {
 
     fun saveHighScore(highScore:String, quizName:String){
 
-        val sharedPreferences = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences(uniqueQuizIdentifier,Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.apply{
-            putString(quizName,highScore)
+            putString("HighScore",highScore)
         }.apply()
     }
 
     fun returnHighScore():Int{
-        val sharedPreferences = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
-        val highScore = sharedPreferences.getString(position,"-1")!!
+        val sharedPreferences = getSharedPreferences(uniqueQuizIdentifier,Context.MODE_PRIVATE)
+        val highScore = sharedPreferences.getString("HighScore","-1")!!
         val hsList = highScore.split("/")
         val hs = hsList.get(0)
         return hs.toInt()
     }
 
     fun saveProgress(){
-        val sharedPreferences = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences(uniqueQuizIdentifier,Context.MODE_PRIVATE)
         val count = correctCounter+incorrectCounter
 
         //If it's the end of the quiz simply reset the progress and return
         if(endOfQuizFlag || fullQuizFlag==false || count ==0){
             val editor = sharedPreferences.edit()
-            editor.remove("Progress$position")
-            editor.remove("ProgressCount$position")
+            editor.remove("Progress")
+            editor.remove("ProgressCount")
             editor.apply()
             return
         }
@@ -449,19 +436,19 @@ class GenericQuiz : AppCompatActivity() {
         val editor = sharedPreferences.edit()
         val gson = Gson()
         val json = gson.toJson(newObj)
-        editor.putString("Progress$position", json)
+        editor.putString("Progress", json)
 
         val prog = "Progress: $count/${questionsList.size}"
-        editor.putString("ProgressCount$position", prog)
+        editor.putString("ProgressCount", prog)
         editor.apply()
     }
 
     fun restoreProgress():Boolean{
-        val sharedPreferences = getSharedPreferences(subTopicName,Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences(uniqueQuizIdentifier,Context.MODE_PRIVATE)
         //val progess = sharedPreferences.getString("Progress","0")!!
 
         val gson = Gson()
-        val json: String = sharedPreferences.getString("Progress$position", "0")!!
+        val json: String = sharedPreferences.getString("Progress", "0")!!
         if(json!="0") {
             val progress: ProgressDataClass = gson.fromJson(json, ProgressDataClass::class.java)
             index = progress.index

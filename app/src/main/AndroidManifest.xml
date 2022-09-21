@@ -10,13 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UltimateTrivia">
         <activity
-            android:name=".Quiz"
-            android:exported="false" />
-        <activity
             android:name=".GenericQuiz"
             android:exported="false" />
         <activity
-            android:name=".SubTopics"
+            android:name=".Topics"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

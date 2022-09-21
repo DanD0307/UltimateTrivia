@@ -15,32 +15,32 @@ class MainActivity : AppCompatActivity() {
         val presidentData = Constants.getPresidentSubTopics()
 
         btPresidents.setOnClickListener {
-            val intent = Intent(this, SubTopics::class.java)
-            intent.putExtra("1","Presidents")
+            val intent = Intent(this, Topics::class.java)
+            intent.putExtra("QuizPath","Presidents")
             startActivity(intent)
         }
 
         btUSStates.setOnClickListener {
-            val intent = Intent(this, SubTopics::class.java)
-            intent.putExtra("1","US States")
+            val intent = Intent(this, Topics::class.java)
+            intent.putExtra("QuizPath","US States")
             startActivity(intent)
         }
 
         btPeriodicTable.setOnClickListener {
-            val intent = Intent(this, SubTopics::class.java)
-            intent.putExtra("1","Periodic Table")
+            val intent = Intent(this, Topics::class.java)
+            intent.putExtra("QuizPath","Periodic Table")
             startActivity(intent)
         }
 
         btCapitalCities.setOnClickListener {
-            val intent = Intent(this, SubTopics::class.java)
-            intent.putExtra("1","Capital Cities")
+            val intent = Intent(this, Topics::class.java)
+            intent.putExtra("QuizPath","Capital Cities")
             startActivity(intent)
         }
 
         btGeneralKnowledge.setOnClickListener {
-            val intent = Intent(this, SubTopics::class.java)
-            intent.putExtra("1","General Knowledge")
+            val intent = Intent(this, Topics::class.java)
+            intent.putExtra("QuizPath","General Knowledge")
             startActivity(intent)
         }
 

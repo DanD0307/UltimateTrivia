@@ -24,14 +24,33 @@
         <TextView
             android:id="@+id/tv_text_row_title"
             android:layout_width="303dp"
-            android:layout_height="85dp"
-            android:layout_gravity="center"
+            android:layout_height="87dp"
+            android:layout_gravity="center|top"
+            android:paddingTop="5dp"
             android:text="Capitals Of South America In"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="28sp">
-        </TextView>
+            android:textSize="28sp"></TextView>
 
+        <TextView
+            android:id="@+id/tv_text_row_highscore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text=""
+            android:textSize="20sp"></TextView>
+
+        <TextView
+            android:id="@+id/tv_text_row_progresscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|bottom"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text=""
+            android:textSize="20sp"></TextView>
 
 
 

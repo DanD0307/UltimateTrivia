@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ultimatetrivia.Constants.getCapitalCitiesImages
 import com.example.ultimatetrivia.Constants.getCapitalCitiesSubTopics
+import com.example.ultimatetrivia.Constants.getGKHighScores
+import com.example.ultimatetrivia.Constants.getGKProgressScores
 import com.example.ultimatetrivia.Constants.getGKSubTopics
 import com.example.ultimatetrivia.Constants.getPeriodicTableHighScores
 import com.example.ultimatetrivia.Constants.getPeriodicTableImages
@@ -19,12 +21,14 @@ import com.example.ultimatetrivia.Constants.getUSStatesHighScores
 import com.example.ultimatetrivia.Constants.getUSStatesImages
 import com.example.ultimatetrivia.Constants.getUSStatesProgressScores
 import com.example.ultimatetrivia.Constants.getUSStatesSubTopics
+import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalCitiesHighScores
+import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalCitiesProgressCount
 import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalCitiesSubTopics
 import com.example.ultimatetrivia.adapters.ItemAdapter
 import kotlinx.android.synthetic.main.activity_sub_topics.*
 import java.lang.Exception
 
-class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
+class Topics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
 
     lateinit var list:ArrayList<String>
     lateinit var images:ArrayList<Int>
@@ -46,20 +50,9 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
 
     fun makeRecyclerView(){
 
-        //This try statement will only work if we're in a the subtopic of the subtopics.
-        try{
-            var b = intent.getStringArrayExtra("1") as Array<String?>
-            var subTopicName = b[0]!!
-            var position = b[1]!!
-            subSubTopicMakeRecyclerView(subTopicName,position)
-            return
-        }
-        catch (e: Exception){
-            val doNothing = 1
-        }
 
+        var a = intent.getStringExtra("QuizPath")
 
-        var a = intent.getStringExtra("1")
         if(a == "Presidents"){
             list = getPresidentSubTopics()
             images = getPresidentImages()
@@ -87,8 +80,14 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
         else if(a == "General Knowledge"){
             list = getGKSubTopics()
             images = arrayListOf()
-            highScores = arrayListOf("")
-            progressScores = arrayListOf("")
+            highScores = getGKHighScores(this)
+            progressScores = getGKProgressScores(this)
+        }
+        else if (a == "Capital Cities,European Capital Cities"){
+            list = getEuropeanCapitalCitiesSubTopics()
+            images = arrayListOf()
+            highScores = getEuropeanCapitalCitiesHighScores(this)
+            progressScores = getEuropeanCapitalCitiesProgressCount(this)
         }
         else{
             list = getPresidentSubTopics()
@@ -106,82 +105,39 @@ class SubTopics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
         recycler_view_items.adapter = itemAdapter
     }
 
-    //This function generates the recycler view when its a sub sub topic. (SubTopic Of SubTopic)
-    fun subSubTopicMakeRecyclerView(subTopicName:String,position:String){
-
-        if(subTopicName == "Capital Cities"){
-            if (position == "0"){
-                //EUROPEAN CAPITAL CITIES
-
-                list = getEuropeanCapitalCitiesSubTopics()
-                images = arrayListOf()
-                highScores = arrayListOf("")
-                progressScores = arrayListOf("")
-            }
-        }
-
-        //Set the LayoutManager that this recycler view will use
-        recycler_view_items.layoutManager = LinearLayoutManager(this)
-        //Adapter Class
-        val itemAdapter = ItemAdapter(this, list as ArrayList<String>,images,highScores,progressScores,this)
-
-        //Adapter instance is set to the recyclerview to inflate the items
-        recycler_view_items.adapter = itemAdapter
-    }
-
-
+    //TODO Change ALL SUBTOPIC MENTIONS TO just TOPIC
+    //TODO MAKE UNIQUE QUIZ IDENTIFIER WHICH EQUALS var quizID : String = "TOPICNAME-SUBTOPICNAME-SUBSUBTOPICNAME"
     override fun onItemClick(position: Int) {
-        //Check whether we are in a subsubtopic
-        try{
-            var b = intent.getStringArrayExtra("1") as Array<String?>
-            var subTopicName = b[0]!!
-            var outerPosition = b[1]!!
-            var innerPosition = position
-
-            if(list.get(innerPosition) == "EXIT"){
-                finish();
-                return
-            }
-
-            val arr = arrayOf(subTopicName, outerPosition.toString(),innerPosition.toString())
-            val intent = Intent(this, GenericQuiz::class.java)
-            intent.putExtra("1", arr)
-            startActivity(intent)
-
-        }
-        catch (e: Exception){
-            val doNothing = 1
-        }
-
-
-
-
 
         //When a button is clicked we move to the question screen
         if(list.get(position) == "EXIT"){
             finish();
             return
         }
-        val subTopicName = this.intent.getStringExtra("1")
+        val topicName = this.intent.getStringExtra("QuizPath")
 
-        if(subTopicName == "Presidents" ) {
-            val intent = Intent(this, GenericQuiz::class.java)
-            val arr = arrayOf(subTopicName, position.toString())
-            intent.putExtra("1", arr)
+
+        //LAUNCHES A SUBTOPIC MENU
+        if(topicName == "Capital Cities"){
+            val intent = Intent(this, Topics::class.java)
+            val quizPath = (topicName+","+list.get(position))
+            intent.putExtra("QuizPath",quizPath)
             startActivity(intent)
         }
 
-        if(subTopicName == "US States" || subTopicName == "Periodic Table"|| subTopicName == "General Knowledge") {
+
+        if(topicName == "US States" || topicName == "Periodic Table"|| topicName == "General Knowledge" || topicName == "Presidents") {
             val intent = Intent(this, GenericQuiz::class.java)
-            val arr = arrayOf(subTopicName, position.toString())
-            intent.putExtra("1", arr)
+            val quizPath = (topicName+","+list.get(position))
+            intent.putExtra("QuizPath", quizPath)
             startActivity(intent)
         }
 
-        if(subTopicName == "Capital Cities"){
-            val intent = Intent(this, SubTopics::class.java)
-            val arr = arrayOf(subTopicName, position.toString())
-            intent.putExtra("1",arr)
+        //In this instance topicName is more like a subTopicName but we use the same variable for reusablity
+        if(topicName == "Capital Cities,European Capital Cities"){
+            val intent = Intent(this, GenericQuiz::class.java)
+            val quizPath = (topicName+","+list.get(position))
+            intent.putExtra("QuizPath",quizPath)
             startActivity(intent)
         }
     }
