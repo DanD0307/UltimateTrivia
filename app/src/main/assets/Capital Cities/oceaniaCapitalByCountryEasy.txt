@@ -1,0 +1,4 @@
+What is the capital of Australia?#Canberra
+What is the capital of Kiribati?#South Tarawa/Tarawa#Tarawa#South Tarawa#South-Tarawa
+What is the capital of New Zealand?#Wellington
+What is the capital of Papua New Guinea?#Port Moresby#Port-Moresby

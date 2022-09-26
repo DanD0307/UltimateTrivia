@@ -43,11 +43,11 @@ object Constants {
 
     fun getCapitalCitiesSubTopics():ArrayList<String>{
 
-        val subTopicTitles = arrayListOf("European Capital Cities","Asian Capital Cities","African Capital Cities","Oceania Capital Cities", "Capital City General Knowledge", "Capital from Country","Country from Capital","EXIT")
+        val subTopicTitles = arrayListOf("European Capital Cities","Asian Capital Cities","African Capital Cities","Oceania Capital Cities","North American Capital Cities","South American Capital Cities", "Capital City General Knowledge","EXIT")
         return subTopicTitles
     }
     fun getCapitalCitiesImages():ArrayList<Int>{
-        val images = arrayListOf(R.drawable.europe,R.drawable.asianew,R.drawable.africa,R.drawable.oceania,R.drawable.europe)
+        val images = arrayListOf(R.drawable.europe,R.drawable.asianew,R.drawable.africa,R.drawable.oceania,R.drawable.northamerica,R.drawable.southamerica,R.drawable.eiffeltower)
         return images
     }
 
@@ -165,7 +165,7 @@ object Constants {
     //---------------------------------------------------------------//
     fun returnNumberByPresidents(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("NumberByPresidents.txt")
+        val IS : InputStream = manager.open("Presidents/NumberByPresidents.txt")
         var presidentsList = arrayListOf<Array<ArrayList<String>>>()
 
         IS.bufferedReader().forEachLine {
@@ -188,7 +188,7 @@ object Constants {
 
     fun returnPresidentsByNumber(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("PresidentsByNumber.txt")
+        val IS : InputStream = manager.open("Presidents/PresidentsByNumber.txt")
         var presidentsList = arrayListOf<Array<ArrayList<String>>>()
 
         IS.bufferedReader().forEachLine {
@@ -212,7 +212,7 @@ object Constants {
 
     fun returnPresidentsByYear(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("PresidentsByYear.txt")
+        val IS : InputStream = manager.open("Presidents/PresidentsByYear.txt")
         var presidentsList = arrayListOf<Array<ArrayList<String>>>()
 
         IS.bufferedReader().forEachLine {
@@ -236,7 +236,7 @@ object Constants {
 
     fun returnPresidentsGK(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("PresidentsGK.txt")
+        val IS : InputStream = manager.open("Presidents/PresidentsGK.txt")
         var presidentsList = arrayListOf<Array<ArrayList<String>>>()
 
         IS.bufferedReader().forEachLine {
@@ -292,28 +292,28 @@ object Constants {
 
     fun returnElementBySymbol(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("elementBySymbol.txt")
+        val IS : InputStream = manager.open("Periodic Table/elementBySymbol.txt")
         val list = returnArrayList(IS)
         return list
 
     }
     fun returnSymbolbyElement(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("symbolByElement.txt")
+        val IS : InputStream = manager.open("Periodic Table/symbolByElement.txt")
         val list = returnArrayList(IS)
         return list
 
     }
     fun returnElementGK(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("elementGK.txt")
+        val IS : InputStream = manager.open("Periodic Table/elementGK.txt")
         val list = returnArrayList(IS)
         return list
 
     }
     fun returnAlloyGK(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("alloyGK.txt")
+        val IS : InputStream = manager.open("Periodic Table/alloyGK.txt")
         val list = returnArrayList(IS)
         return list
 
@@ -325,20 +325,20 @@ object Constants {
 
     fun returnGK1(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("gk1.txt")
+        val IS : InputStream = manager.open("General Knowledge/gk1.txt")
         val list = returnArrayList(IS)
         return list
     }
 
     fun returnGK2(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("gk2.txt")
+        val IS : InputStream = manager.open("General Knowledge/gk2.txt")
         val list = returnArrayList(IS)
         return list
     }
     fun returnGK3(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
-        val IS : InputStream = manager.open("gk3.txt")
+        val IS : InputStream = manager.open("General Knowledge/gk3.txt")
         val list = returnArrayList(IS)
         return list
     }

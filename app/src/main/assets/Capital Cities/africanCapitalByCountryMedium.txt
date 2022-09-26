@@ -1,0 +1,26 @@
+What is the capital of Angola?#Luanda
+What is the De Facto capital of Benin?#Cotonou
+What is the Official capital of Benin?#Porto-novo#Porto Novo
+What is the capital of Burundi?#Gitega
+What is the capital of Cameroon?#Yaounde
+What is the capital of Cape Verde?#Praia
+What is the capital of Central African Republic?#Bangui
+What is the capital of Comoros?#Moroni
+What is the capital of Democratic republic of the congo?#Kinshasa
+What is the capital of Eritrea?#Asmara
+What is the capital of Gabon?#Libreville
+What is the capital of Gambia?#Banjul
+What is the capital of Ghana?#Accra
+What is the capital of Guinea?#Conakry
+What is the capital of Madagascar?#Antananarivo
+What is the capital of Mali?#Bamako
+What is the capital of Mozambique?#Maputo
+What is the capital of Republic of the congo?#Brazzaville
+What is the capital of Rwanda?#Kigali
+What is the capital of Sierra Leone?#Freetown
+What is the capital of South Sudan?#Juba
+What is the capital of Tanzania?#Dodoma
+What is the capital of Togo?#Lome
+What is the capital of Uganda?#Kampala
+What is the capital of Zambia?#Lusaka
+What is the capital of Zimbabwe?#Harare

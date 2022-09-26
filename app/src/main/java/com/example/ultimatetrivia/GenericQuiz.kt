@@ -1,7 +1,6 @@
 package com.example.ultimatetrivia
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -19,13 +18,29 @@ import com.example.ultimatetrivia.Constants.returnStateByStateCapital
 import com.example.ultimatetrivia.Constants.returnStateCapitalByState
 import com.example.ultimatetrivia.Constants.returnStateGK
 import com.example.ultimatetrivia.Constants.returnSymbolbyElement
-import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalByCountryAll
-import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalByCountryEasy
-import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalByCountryHard
-import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalByCountryMedium
+import com.example.ultimatetrivia.SubConstants.getAfricanCapitalByCountryAll
+import com.example.ultimatetrivia.SubConstants.getAfricanCapitalByCountryEasy
+import com.example.ultimatetrivia.SubConstants.getAfricanCapitalByCountryHard
+import com.example.ultimatetrivia.SubConstants.getAfricanCapitalByCountryMedium
+import com.example.ultimatetrivia.SubConstants.getAsianCapitalByCountryAll
+import com.example.ultimatetrivia.SubConstants.getAsianCapitalByCountryEasy
+import com.example.ultimatetrivia.SubConstants.getAsianCapitalByCountryHard
+import com.example.ultimatetrivia.SubConstants.getAsianCapitalByCountryMedium
+import com.example.ultimatetrivia.SubConstants.getEuropeanCapitalByCountryAll
+import com.example.ultimatetrivia.SubConstants.getEuropeanCapitalByCountryEasy
+import com.example.ultimatetrivia.SubConstants.getEuropeanCapitalByCountryHard
+import com.example.ultimatetrivia.SubConstants.getEuropeanCapitalByCountryMedium
+import com.example.ultimatetrivia.SubConstants.getNorthAmericanCapitalByCountryAll
+import com.example.ultimatetrivia.SubConstants.getNorthAmericanCapitalByCountryEasy
+import com.example.ultimatetrivia.SubConstants.getNorthAmericanCapitalByCountryHard
+import com.example.ultimatetrivia.SubConstants.getOceaniaCapitalByCountryAll
+import com.example.ultimatetrivia.SubConstants.getOceaniaCapitalByCountryEasy
+import com.example.ultimatetrivia.SubConstants.getOceaniaCapitalByCountryHard
+import com.example.ultimatetrivia.SubConstants.getSouthAmericanCapitalByCountryAll
+import com.example.ultimatetrivia.SubConstants.getSouthAmericanCapitalByCountryEasy
+import com.example.ultimatetrivia.SubConstants.getSouthAmericanCapitalByCountryHard
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_quiz.*
-import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
@@ -47,12 +62,7 @@ class GenericQuiz : AppCompatActivity() {
     private var fullQuizLength = 0
 
     //Getting what type of quiz we're in
-    lateinit var arr: Array<String?>
-    var subTopicName = ""
     var uniqueQuizIdentifier = ""
-    var position = ""
-    var innerPosition = ""
-    var fullQuizName = ""
     var fullQuizFlag = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,7 +85,7 @@ class GenericQuiz : AppCompatActivity() {
         //If enter is pressed on the editText
         etEnterAnswer.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
-                btConfirm.performClick();
+                btConfirm.performClick()
                 return@OnKeyListener true
             }
             false
@@ -84,7 +94,7 @@ class GenericQuiz : AppCompatActivity() {
         //This button is the Confirm/Yes/Continue button
         btConfirm.setOnClickListener {
 
-            var len = questionsList.size
+            val len = questionsList.size
             //IF THEY GOT 100% on QUIZ
             if (endOfQuizFlag && correctCounter == len){
 
@@ -97,7 +107,7 @@ class GenericQuiz : AppCompatActivity() {
             else if (endOfQuizFlag && correctCounter <= len){
                 //restart with incorrect answers only
                 questionsList = questionsWrongList
-                var tempCor = correctCounter
+                val tempCor = correctCounter
                 restartQuiz()
                 //If they got 0 on the full quiz then any score should be saved as a highscore
                 if(tempCor == 0 && len == fullQuizLength)
@@ -121,7 +131,7 @@ class GenericQuiz : AppCompatActivity() {
 
             //User has pressed confirm so we check their answer
             else {
-                var inputtedAnswer = etEnterAnswer.text.toString()
+                val inputtedAnswer = etEnterAnswer.text.toString()
                 checkAnswer(inputtedAnswer)
 
             }
@@ -129,7 +139,7 @@ class GenericQuiz : AppCompatActivity() {
 
         btExitQuiz.setOnClickListener{
             saveProgress()
-            finish();
+            finish()
         }
         btResetQuiz.setOnClickListener{
             restartQuiz()
@@ -158,9 +168,6 @@ class GenericQuiz : AppCompatActivity() {
 
 
     fun getQuestions(){
-
-
-        println("GETQUESTIONSPRINT: $uniqueQuizIdentifier")
 
         if (uniqueQuizIdentifier == "Presidents,Presidents by Number"){
             questionsList = Constants.returnPresidentsByNumber(this)
@@ -258,6 +265,93 @@ class GenericQuiz : AppCompatActivity() {
             randomiseQuestions()
             askQuestion()
         }
+        if (uniqueQuizIdentifier == "Capital Cities,Asian Capital Cities,Capital By Country Easy") {
+            questionsList = getAsianCapitalByCountryEasy(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,Asian Capital Cities,Capital By Country Medium"){
+            questionsList = getAsianCapitalByCountryMedium(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,Asian Capital Cities,Capital By Country Hard"){
+            questionsList = getAsianCapitalByCountryHard(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,Asian Capital Cities,Capital By Country All"){
+            questionsList = getAsianCapitalByCountryAll(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if (uniqueQuizIdentifier == "Capital Cities,African Capital Cities,Capital By Country Easy") {
+            questionsList = getAfricanCapitalByCountryEasy(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,African Capital Cities,Capital By Country Medium"){
+            questionsList = getAfricanCapitalByCountryMedium(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,African Capital Cities,Capital By Country Hard"){
+            questionsList = getAfricanCapitalByCountryHard(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,African Capital Cities,Capital By Country All"){
+            questionsList = getAfricanCapitalByCountryAll(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+
+        if (uniqueQuizIdentifier == "Capital Cities,Oceania Capital Cities,Capital By Country Easy") {
+            questionsList = getOceaniaCapitalByCountryEasy(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,Oceania Capital Cities,Capital By Country Hard"){
+            questionsList = getOceaniaCapitalByCountryHard(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,Oceania Capital Cities,Capital By Country All"){
+            questionsList = getOceaniaCapitalByCountryAll(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,North American Capital Cities,Capital By Country Easy"){
+            questionsList = getNorthAmericanCapitalByCountryEasy(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,North American Capital Cities,Capital By Country Hard"){
+            questionsList = getNorthAmericanCapitalByCountryHard(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,North American Capital Cities,Capital By Country All"){
+            questionsList = getNorthAmericanCapitalByCountryAll(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,South American Capital Cities,Capital By Country Easy"){
+            questionsList = getSouthAmericanCapitalByCountryEasy(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,South American Capital Cities,Capital By Country Hard"){
+            questionsList = getSouthAmericanCapitalByCountryHard(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,South American Capital Cities,Capital By Country All"){
+            questionsList = getSouthAmericanCapitalByCountryAll(this)
+            randomiseQuestions()
+            askQuestion()
+        }
+
     }
 
     fun randomiseQuestions(){
@@ -266,7 +360,7 @@ class GenericQuiz : AppCompatActivity() {
         var tempList : Array<ArrayList<String>>
         val randomisedList = arrayListOf<Array<ArrayList<String>>>()
         val min = 0
-        var getRandomValue = 0
+        var getRandomValue:Int
         while (length>0){
             getRandomValue = (Math.random() * (length - min)).toInt() + min
             tempList = questions.removeAt(getRandomValue)
@@ -298,12 +392,12 @@ class GenericQuiz : AppCompatActivity() {
         val answer = answersList.get(0)
         val answers = ArrayList(answersList)
         answers.replaceAll { it.lowercase(Locale.getDefault()) }
-        var InputtedAnswer=inputtedAnswer.lowercase()
+        val InputtedAnswer=inputtedAnswer.lowercase()
 
         //remove spaces from end of answer and start of answer
-        val l = InputtedAnswer.trimEnd().trimStart()
+        val lowercaseAnswer = InputtedAnswer.trimEnd().trimStart()
 
-        if(l in answers){
+        if(lowercaseAnswer in answers){
             tvCorrectIncorrect.text = "Correct!"
             etEnterAnswer.text.clear()
             etEnterAnswer.setVisibility(View.INVISIBLE)
@@ -375,9 +469,7 @@ class GenericQuiz : AppCompatActivity() {
         //Save High Score
         val highScore = returnHighScore()
         if (fullQuizFlag && correctCounter>highScore)
-            saveHighScore("$correctCounter/${questionsList.size}", uniqueQuizIdentifier)
-
-
+            saveHighScore("$correctCounter/${questionsList.size}")
 
     }
 
@@ -395,8 +487,7 @@ class GenericQuiz : AppCompatActivity() {
         tvCorrectIncorrect.setVisibility(View.VISIBLE)
     }
 
-    fun saveHighScore(highScore:String, quizName:String){
-
+    fun saveHighScore(highScore:String){
         val sharedPreferences = getSharedPreferences(uniqueQuizIdentifier,Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.apply{

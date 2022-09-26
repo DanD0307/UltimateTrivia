@@ -12,14 +12,14 @@
         android:id="@+id/btPeriodicTable"
         android:layout_width="150dp"
         android:layout_height="80dp"
-        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/white"
         android:text="Periodic Table"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btPresidents" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btUSStates" />
 
     <Button
         android:id="@+id/btGeneralKnowledge"
@@ -32,20 +32,20 @@
         android:text="General Knowledge"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btPeriodicTable" />
+        app:layout_constraintTop_toBottomOf="@+id/btPresidents" />
 
     <Button
-        android:id="@+id/btCapitalCities"
+        android:id="@+id/btPresidents"
         android:layout_width="150dp"
         android:layout_height="80dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/roundstyle"
         android:backgroundTint="@color/white"
-        android:text="Capital Cities"
+        android:text="Presidents"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btUSStates" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btCapitalCities" />
 
     <Button
         android:id="@+id/btHistory"
@@ -58,17 +58,17 @@
         android:text="History"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btCapitalCities" />
+        app:layout_constraintTop_toBottomOf="@+id/btPeriodicTable" />
 
     <Button
-        android:id="@+id/btPresidents"
+        android:id="@+id/btCapitalCities"
         android:layout_width="150dp"
         android:layout_height="80dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="152dp"
-        android:backgroundTint="@color/white"
         android:background="@drawable/roundstyle"
-        android:text="Presidents"
+        android:backgroundTint="@color/white"
+        android:text="Capital Cities"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -79,8 +79,8 @@
         android:layout_height="80dp"
         android:layout_marginTop="152dp"
         android:layout_marginEnd="36dp"
-        android:backgroundTint="@color/white"
         android:background="@drawable/roundstyle"
+        android:backgroundTint="@color/white"
         android:text="US States"
         android:textColor="@color/black"
 

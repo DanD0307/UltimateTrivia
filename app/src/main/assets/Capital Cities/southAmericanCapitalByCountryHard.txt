@@ -1,0 +1,7 @@
+What is the capital of Bolivia?#Sucre
+What is the capital of Colombia?#Bogota
+What is the capital of Ecuador?#Quito
+What is the capital of Guyana?#Georgetown
+What is the capital of Paraguay?#Asuncion
+What is the capital of Suriname?#Paramaribo
+What is the capital of Venezuela?#Caracas

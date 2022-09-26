@@ -21,12 +21,26 @@ import com.example.ultimatetrivia.Constants.getUSStatesHighScores
 import com.example.ultimatetrivia.Constants.getUSStatesImages
 import com.example.ultimatetrivia.Constants.getUSStatesProgressScores
 import com.example.ultimatetrivia.Constants.getUSStatesSubTopics
-import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalCitiesHighScores
-import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalCitiesProgressCount
-import com.example.ultimatetrivia.SubSubConstants.getEuropeanCapitalCitiesSubTopics
+import com.example.ultimatetrivia.SubConstants.getAfricanCapitalCitiesHighScores
+import com.example.ultimatetrivia.SubConstants.getAfricanCapitalCitiesProgressCount
+import com.example.ultimatetrivia.SubConstants.getAfricanCapitalCitiesSubTopics
+import com.example.ultimatetrivia.SubConstants.getAsianCapitalCitiesHighScores
+import com.example.ultimatetrivia.SubConstants.getAsianCapitalCitiesProgressCount
+import com.example.ultimatetrivia.SubConstants.getAsianCapitalCitiesSubTopics
+import com.example.ultimatetrivia.SubConstants.getEuropeanCapitalCitiesHighScores
+import com.example.ultimatetrivia.SubConstants.getEuropeanCapitalCitiesProgressCount
+import com.example.ultimatetrivia.SubConstants.getEuropeanCapitalCitiesSubTopics
+import com.example.ultimatetrivia.SubConstants.getNorthAmericanCapitalCitiesHighScores
+import com.example.ultimatetrivia.SubConstants.getNorthAmericanCapitalCitiesProgressCount
+import com.example.ultimatetrivia.SubConstants.getNorthAmericanCapitalCitiesSubTopics
+import com.example.ultimatetrivia.SubConstants.getOceaniaCapitalCitiesHighScores
+import com.example.ultimatetrivia.SubConstants.getOceaniaCapitalCitiesProgressCount
+import com.example.ultimatetrivia.SubConstants.getOceaniaCapitalCitiesSubTopics
+import com.example.ultimatetrivia.SubConstants.getSouthAmericanCapitalCitiesHighScores
+import com.example.ultimatetrivia.SubConstants.getSouthAmericanCapitalCitiesProgressCount
+import com.example.ultimatetrivia.SubConstants.getSouthAmericanCapitalCitiesSubTopics
 import com.example.ultimatetrivia.adapters.ItemAdapter
 import kotlinx.android.synthetic.main.activity_sub_topics.*
-import java.lang.Exception
 
 class Topics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
 
@@ -89,6 +103,36 @@ class Topics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
             highScores = getEuropeanCapitalCitiesHighScores(this)
             progressScores = getEuropeanCapitalCitiesProgressCount(this)
         }
+        else if (a == "Capital Cities,Asian Capital Cities"){
+            list = getAsianCapitalCitiesSubTopics()
+            images = arrayListOf()
+            highScores = getAsianCapitalCitiesHighScores(this)
+            progressScores = getAsianCapitalCitiesProgressCount(this)
+        }
+        else if (a == "Capital Cities,African Capital Cities"){
+            list = getAfricanCapitalCitiesSubTopics()
+            images = arrayListOf()
+            highScores = getAfricanCapitalCitiesHighScores(this)
+            progressScores = getAfricanCapitalCitiesProgressCount(this)
+        }
+        else if (a == "Capital Cities,Oceania Capital Cities"){
+            list = getOceaniaCapitalCitiesSubTopics()
+            images = arrayListOf()
+            highScores = getOceaniaCapitalCitiesHighScores(this)
+            progressScores = getOceaniaCapitalCitiesProgressCount(this)
+        }
+        else if (a == "Capital Cities,North American Capital Cities"){
+            list = getNorthAmericanCapitalCitiesSubTopics()
+            images = arrayListOf()
+            highScores = getNorthAmericanCapitalCitiesHighScores(this)
+            progressScores = getNorthAmericanCapitalCitiesProgressCount(this)
+        }
+        else if (a == "Capital Cities,South American Capital Cities"){
+            list = getSouthAmericanCapitalCitiesSubTopics()
+            images = arrayListOf()
+            highScores = getSouthAmericanCapitalCitiesHighScores(this)
+            progressScores = getSouthAmericanCapitalCitiesProgressCount(this)
+        }
         else{
             list = getPresidentSubTopics()
             images = getPresidentImages()
@@ -105,8 +149,6 @@ class Topics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
         recycler_view_items.adapter = itemAdapter
     }
 
-    //TODO Change ALL SUBTOPIC MENTIONS TO just TOPIC
-    //TODO MAKE UNIQUE QUIZ IDENTIFIER WHICH EQUALS var quizID : String = "TOPICNAME-SUBTOPICNAME-SUBSUBTOPICNAME"
     override fun onItemClick(position: Int) {
 
         //When a button is clicked we move to the question screen
@@ -124,20 +166,10 @@ class Topics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
             intent.putExtra("QuizPath",quizPath)
             startActivity(intent)
         }
-
-
-        if(topicName == "US States" || topicName == "Periodic Table"|| topicName == "General Knowledge" || topicName == "Presidents") {
+        else{
             val intent = Intent(this, GenericQuiz::class.java)
             val quizPath = (topicName+","+list.get(position))
             intent.putExtra("QuizPath", quizPath)
-            startActivity(intent)
-        }
-
-        //In this instance topicName is more like a subTopicName but we use the same variable for reusablity
-        if(topicName == "Capital Cities,European Capital Cities"){
-            val intent = Intent(this, GenericQuiz::class.java)
-            val quizPath = (topicName+","+list.get(position))
-            intent.putExtra("QuizPath",quizPath)
             startActivity(intent)
         }
     }

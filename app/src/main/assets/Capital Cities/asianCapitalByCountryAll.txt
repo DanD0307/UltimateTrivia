@@ -1,0 +1,48 @@
+What is the capital of Vietnam?#Hanoi
+What is the capital of China#Beijing
+What is the capital of Singapore?#Singapore#Singapore City
+What is the capital of Thailand?#Bangkok
+What is the capital of Japan?#Tokyo
+What is the capital of Israel?#Jerusalem
+What is the capital of Philippines?#Manila
+What is the capital of Syria?#Damascus
+What is the capital of Iraq?#Baghdad
+What is the capital of United Arab Emirates?#Abu Dhabi#Abu-Dhabi
+What is the capital of Iran?#Tehran
+What is the capital of Kuwait?#Kuwait city#Kuwait
+What is the capital of Turkey?#Ankara
+What is the capital of India?#New Delhi#New-Delhi
+What is the capital of South Korea?#Seoul
+What is the capital of North Korea?#Pyongyang
+What is the capital of Indonesia?#Jakarta
+What is the capital of Afghanistan?#Kabul
+What is the capital of Cambodia?#Phnom Penh#Phnom-Penh
+What is the capital of Lebanon?#Beirut
+What is the capital of Malaysia?#Kuala Lumpur#Kuala-Lumpur
+What is the capital of Taiwan?#Taipei
+What is the capital of Pakistan?#Islamabad
+What is the capital of Saudi Arabia?#Riyadh
+What is the capital of Qatar?#Doha
+What is the capital of Azerbaijan?#Baku
+What is the capital of East Timor?#Dili
+What is the capital of Maldives?#Male
+What is the capital of Jordan?#Amman
+What is the capital of Laos?#Vientiane
+What is the capital of Armenia?#Yerevan
+What is the capital of Cyprus?#Nicosia
+What is the capital of Bangladesh?#Dhaka
+What is the capital of Uzbekistan?#Tashkent
+What is the capital of Bahrain?#Manama
+What is the capital of Myanmar?#Naypyidaw
+What is the capital of Oman?#Muscat
+What is the capital of Kyrgyzstan?#Bishkek
+What is the capital of Bhutan?#Thimphu
+What is the capital of Sri Lanka?#Sri Jayawardenepura Kotte#Colombo#Kotte
+What is the capital of Yemen?#Sana'a#Sana#Sana a#Sana-a
+What is the capital of Brunei?#Bandar Seri Begawan#Bandar-Seri-Begawan
+What is the capital of Turkmenistan?#Ashgabat
+What is the capital of Georgia?#Tbilisi
+What is the capital of Tajikistan?#Dushanbe
+What is the capital of Mongolia?#Ulaanbaatar
+What is the capital of Nepal?#kathmandu
+What is the capital of Kazakhstan?#Nur-Sultan#Nur Sultan

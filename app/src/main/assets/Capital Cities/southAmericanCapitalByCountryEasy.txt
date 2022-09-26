@@ -1,0 +1,5 @@
+What is the capital of Argentina?#Buenos Aires#Buenos-Aires
+What is the capital of Brazil?#Brasilia
+What is the capital of Chile?#Santiago
+What is the capital of Peru?#Lima
+What is the capital of Uruguay?#Montevideo

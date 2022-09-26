@@ -1,0 +1,18 @@
+What is the capital of Vietnam?#Hanoi
+What is the capital of China#Beijing
+What is the capital of Singapore?#Singapore#Singapore City
+What is the capital of Thailand?#Bangkok
+What is the capital of Japan?#Tokyo
+What is the capital of Israel?#Jerusalem
+What is the capital of Philippines?#Manila
+What is the capital of Syria?#Damascus
+What is the capital of Iraq?#Baghdad
+What is the capital of United Arab Emirates?#Abu Dhabi#Abu-Dhabi
+What is the capital of Iran?#Tehran
+What is the capital of Kuwait?#Kuwait city#Kuwait
+What is the capital of Turkey?#Ankara
+What is the capital of India?#New Delhi#New-Delhi
+What is the capital of South Korea?#Seoul
+What is the capital of North Korea?#Pyongyang
+What is the capital of Indonesia?#Jakarta
+What is the capital of Afghanistan?#Kabul

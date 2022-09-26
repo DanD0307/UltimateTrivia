@@ -1,0 +1,14 @@
+What is the capital of Botswana?#Gaborone
+What is the capital of Burkina Faso?#Ouagadougou
+What is the capital of Chad?#N'Djamena
+What is the capital of Eswatini?#Mbabane
+What is the capital of Ivory Coast?#Yamoussoukro
+What is the capital of Lesotho?#Maseru
+What is the capital of Malawi?#Lilongwe
+What is the capital of Mauritania?#Nouakchott
+What is the capital of Namibia?#Windhoek
+What is the capital of Niger?#Niamey
+What is the capital of Somalia?#Mogadishu
+What is the executive capital of South Africa?#Pretoria
+What is the judicial capital of South Africa?#Bloemfontein
+What is the legislative capital of South Africa?#Cape Town

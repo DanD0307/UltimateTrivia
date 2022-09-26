@@ -1,6 +1,0 @@
-What symbol is used to represent Hydrogen?#H
-What symbol is used to represent Helium?#He
-What symbol is used to represent Lithium?#Li
-What symbol is used to represent Beryllium?#Be
-What symbol is used to represent Boron?#B
-What symbol is used to represent Carbon?#C
