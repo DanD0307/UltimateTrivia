@@ -7,7 +7,7 @@ import java.io.InputStream
 
 object Constants {
 
-    fun getPresidentSubTopics():ArrayList<String>{
+    fun getPresidentTopics():ArrayList<String>{
         val subTopicTitles = arrayListOf("Presidents by Number","Number by President","President by Years","Presidents GK","EXIT")
         return subTopicTitles
     }
@@ -41,7 +41,7 @@ object Constants {
         return arrayList
     }
 
-    fun getCapitalCitiesSubTopics():ArrayList<String>{
+    fun getCapitalCitiesTopics():ArrayList<String>{
 
         val subTopicTitles = arrayListOf("European Capital Cities","Asian Capital Cities","African Capital Cities","Oceania Capital Cities","North American Capital Cities","South American Capital Cities", "Capital City General Knowledge","EXIT")
         return subTopicTitles
@@ -51,7 +51,7 @@ object Constants {
         return images
     }
 
-    fun getPeriodicTableSubTopics():ArrayList<String>{
+    fun getPeriodicTableTopics():ArrayList<String>{
 
         val subTopicTitles = arrayListOf("Element by Symbol","Symbol by Element","Element General Knowledge","Alloy General Knowledge","EXIT")
         return subTopicTitles
@@ -89,7 +89,7 @@ object Constants {
         return arrayList
     }
 
-    fun getUSStatesSubTopics():ArrayList<String>{
+    fun getUSStatesTopics():ArrayList<String>{
 
         val subTopicTitles = arrayListOf("State by State Capital","State Capital by State","State General Knowledge","EXIT")
         return subTopicTitles
@@ -123,7 +123,7 @@ object Constants {
         return arrayList
     }
 
-    fun getGKSubTopics():ArrayList<String>{
+    fun getGKTopics():ArrayList<String>{
 
         val subTopicTitles = arrayListOf("General Knowledge Quiz 1","General Knowledge Quiz 2","General Knowledge Quiz 3","General Knowledge Quiz 4","General Knowledge Quiz 5","EXIT")
         return subTopicTitles
@@ -160,102 +160,40 @@ object Constants {
         return arrayList
     }
 
+    fun getHistoryTopics(): ArrayList<String> {
+        val subTopicTitles = arrayListOf("Wars and Conflicts","Monarchs Of England(and UK)","Ancient History","History General Knowledge","EXIT")
+        return subTopicTitles
+    }
+
     //---------------------------------------------------------------//
     //                  PRESIDENTS QUESTIONS                         //
     //---------------------------------------------------------------//
     fun returnNumberByPresidents(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
         val IS : InputStream = manager.open("Presidents/NumberByPresidents.txt")
-        var presidentsList = arrayListOf<Array<ArrayList<String>>>()
-
-        IS.bufferedReader().forEachLine {
-            var line = it
-            var array = line.split("#").toTypedArray()
-            var questionArray = arrayListOf(array[0])
-            var answers = arrayListOf<String>()
-
-            for (element in array){
-                if (element != array[0]){
-                    //Append this element to answers array
-                    answers.add(element)
-                }
-            }
-            var qAndA = arrayOf(questionArray,answers)
-            presidentsList.add(qAndA)
-        }
-        return presidentsList
+        val list = returnArrayList(IS)
+        return list
     }
 
     fun returnPresidentsByNumber(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
         val IS : InputStream = manager.open("Presidents/PresidentsByNumber.txt")
-        var presidentsList = arrayListOf<Array<ArrayList<String>>>()
-
-        IS.bufferedReader().forEachLine {
-            var line = it
-            var array = line.split("#").toTypedArray()
-            var questionArray = arrayListOf(array[0])
-            var answers = arrayListOf<String>()
-
-            for (element in array){
-                if (element != array[0]){
-                    //Append this element to answers array
-                    answers.add(element)
-                }
-            }
-            var qAndA = arrayOf(questionArray,answers)
-            presidentsList.add(qAndA)
-        }
-
-        return presidentsList
+        val list = returnArrayList(IS)
+        return list
     }
 
     fun returnPresidentsByYear(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
         val IS : InputStream = manager.open("Presidents/PresidentsByYear.txt")
-        var presidentsList = arrayListOf<Array<ArrayList<String>>>()
-
-        IS.bufferedReader().forEachLine {
-            var line = it
-            var array = line.split("#").toTypedArray()
-            var questionArray = arrayListOf(array[0])
-            var answers = arrayListOf<String>()
-
-            for (element in array){
-                if (element != array[0]){
-                    //Append this element to answers array
-                    answers.add(element)
-                }
-            }
-            var qAndA = arrayOf(questionArray,answers)
-            presidentsList.add(qAndA)
-        }
-
-        return presidentsList
+        val list = returnArrayList(IS)
+        return list
     }
 
     fun returnPresidentsGK(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
         val IS : InputStream = manager.open("Presidents/PresidentsGK.txt")
-        var presidentsList = arrayListOf<Array<ArrayList<String>>>()
-
-        IS.bufferedReader().forEachLine {
-            var line = it
-            var array = line.split("#").toTypedArray()
-            var questionArray = arrayListOf(array[0])
-            var answers = arrayListOf<String>()
-
-            for (element in array){
-                if (element != array[0]){
-                    //Append this element to answers array
-                    answers.add(element)
-                }
-            }
-            var qAndA = arrayOf(questionArray,answers)
-            presidentsList.add(qAndA)
-        }
-
-        return presidentsList
+        val list = returnArrayList(IS)
+        return list
     }
 
     //---------------------------------------------------------------//
@@ -267,7 +205,6 @@ object Constants {
         val IS : InputStream = manager.open("stateByStateCapital.txt")
         val list = returnArrayList(IS)
         return list
-
     }
 
     fun returnStateCapitalByState(context:Context):ArrayList<Array<ArrayList<String>>> {
@@ -302,7 +239,6 @@ object Constants {
         val IS : InputStream = manager.open("Periodic Table/symbolByElement.txt")
         val list = returnArrayList(IS)
         return list
-
     }
     fun returnElementGK(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
@@ -339,6 +275,12 @@ object Constants {
     fun returnGK3(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
         val IS : InputStream = manager.open("General Knowledge/gk3.txt")
+        val list = returnArrayList(IS)
+        return list
+    }
+    fun returnGK4(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("General Knowledge/gk4.txt")
         val list = returnArrayList(IS)
         return list
     }

@@ -4,5 +4,6 @@ What is the Latin name for Tin?#Stannum
 What is the Latin name for Silver?#Argentum
 What is the Latin name for Tungsten?#Wolfram
 What is the Latin name for Gold?#Aurum
-What is the Latin name for Lead?#Plumbum.3
+What is the Latin name for Lead?#Plumbum
+As of September 2022 how many known elements are on the periodic table?#118#One Hundred and Eighteen#118 Elements
 

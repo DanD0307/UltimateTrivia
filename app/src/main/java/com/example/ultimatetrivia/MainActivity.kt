@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        val presidentData = Constants.getPresidentSubTopics()
 
         btPresidents.setOnClickListener {
             val intent = Intent(this, Topics::class.java)
@@ -41,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         btGeneralKnowledge.setOnClickListener {
             val intent = Intent(this, Topics::class.java)
             intent.putExtra("QuizPath","General Knowledge")
+            startActivity(intent)
+        }
+        btHistory.setOnClickListener {
+            val intent = Intent(this, Topics::class.java)
+            intent.putExtra("QuizPath","History")
             startActivity(intent)
         }
 

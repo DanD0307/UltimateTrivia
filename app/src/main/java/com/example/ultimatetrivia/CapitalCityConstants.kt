@@ -5,7 +5,7 @@ import android.content.res.AssetManager
 import java.io.InputStream
 
 
-object SubConstants{
+object CapitalCityConstants{
 
     //CAPITAL CITIES SUBTOPICS
 
@@ -327,6 +327,14 @@ object SubConstants{
     fun getSouthAmericanCapitalByCountryAll(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
         val IS : InputStream = manager.open("Capital Cities/southAmericanCapitalByCountryAll.txt")
+        val list = Constants.returnArrayList(IS)
+        return list
+    }
+
+    //Get Capital City general knowledge
+    fun getCapitalCityGK(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("Capital Cities/capitalCityGK.txt")
         val list = Constants.returnArrayList(IS)
         return list
     }
