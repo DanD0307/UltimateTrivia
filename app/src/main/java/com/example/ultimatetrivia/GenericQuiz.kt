@@ -22,28 +22,40 @@ import com.example.ultimatetrivia.CapitalCityConstants.getAfricanCapitalByCountr
 import com.example.ultimatetrivia.CapitalCityConstants.getAfricanCapitalByCountryEasy
 import com.example.ultimatetrivia.CapitalCityConstants.getAfricanCapitalByCountryHard
 import com.example.ultimatetrivia.CapitalCityConstants.getAfricanCapitalByCountryMedium
+import com.example.ultimatetrivia.CapitalCityConstants.getAfricanCountryByCapitalAll
+import com.example.ultimatetrivia.CapitalCityConstants.getAllCapitalByCountry
+import com.example.ultimatetrivia.CapitalCityConstants.getAllCountryByCapital
 import com.example.ultimatetrivia.CapitalCityConstants.getAsianCapitalByCountryAll
 import com.example.ultimatetrivia.CapitalCityConstants.getAsianCapitalByCountryEasy
 import com.example.ultimatetrivia.CapitalCityConstants.getAsianCapitalByCountryHard
 import com.example.ultimatetrivia.CapitalCityConstants.getAsianCapitalByCountryMedium
+import com.example.ultimatetrivia.CapitalCityConstants.getAsianCountryByCapitalAll
 import com.example.ultimatetrivia.CapitalCityConstants.getCapitalCityGK
 import com.example.ultimatetrivia.CapitalCityConstants.getEuropeanCapitalByCountryAll
 import com.example.ultimatetrivia.CapitalCityConstants.getEuropeanCapitalByCountryEasy
 import com.example.ultimatetrivia.CapitalCityConstants.getEuropeanCapitalByCountryHard
 import com.example.ultimatetrivia.CapitalCityConstants.getEuropeanCapitalByCountryMedium
+import com.example.ultimatetrivia.CapitalCityConstants.getEuropeanCountryByCapitalAll
 import com.example.ultimatetrivia.CapitalCityConstants.getNorthAmericanCapitalByCountryAll
 import com.example.ultimatetrivia.CapitalCityConstants.getNorthAmericanCapitalByCountryEasy
 import com.example.ultimatetrivia.CapitalCityConstants.getNorthAmericanCapitalByCountryHard
+import com.example.ultimatetrivia.CapitalCityConstants.getNorthAmericanCountryByCapitalAll
 import com.example.ultimatetrivia.CapitalCityConstants.getOceaniaCapitalByCountryAll
 import com.example.ultimatetrivia.CapitalCityConstants.getOceaniaCapitalByCountryEasy
 import com.example.ultimatetrivia.CapitalCityConstants.getOceaniaCapitalByCountryHard
+import com.example.ultimatetrivia.CapitalCityConstants.getOceaniaCountryByCapitalAll
 import com.example.ultimatetrivia.CapitalCityConstants.getSouthAmericanCapitalByCountryAll
 import com.example.ultimatetrivia.CapitalCityConstants.getSouthAmericanCapitalByCountryEasy
 import com.example.ultimatetrivia.CapitalCityConstants.getSouthAmericanCapitalByCountryHard
+import com.example.ultimatetrivia.CapitalCityConstants.getSouthAmericanCountryByCapitalAll
 import com.example.ultimatetrivia.Constants.returnGK4
+import com.example.ultimatetrivia.Constants.returnGK5
 import com.example.ultimatetrivia.HistoryConstants.getHistoryAmericanCivilWarQuestions
 import com.example.ultimatetrivia.HistoryConstants.getHistoryAmericanRevolutionQuestions
+import com.example.ultimatetrivia.HistoryConstants.getHistoryAncientHistoryQuestions
 import com.example.ultimatetrivia.HistoryConstants.getHistoryEnglishCivilWarQuestions
+import com.example.ultimatetrivia.HistoryConstants.getHistoryGKQuestions
+import com.example.ultimatetrivia.HistoryConstants.getHistoryMonarchsQuestions
 import com.example.ultimatetrivia.HistoryConstants.getHistoryPunicWarsQuestions
 import com.example.ultimatetrivia.HistoryConstants.getHistoryWorldWarIIQuestions
 import com.example.ultimatetrivia.HistoryConstants.getHistoryWorldWarIQuestions
@@ -226,6 +238,9 @@ class GenericQuiz : AppCompatActivity() {
         if (uniqueQuizIdentifier == "General Knowledge,General Knowledge Quiz 4") {
             questionsList = returnGK4(this)
         }
+        if (uniqueQuizIdentifier == "General Knowledge,General Knowledge Quiz 5") {
+            questionsList = returnGK5(this)
+        }
 
         if (uniqueQuizIdentifier == "Capital Cities,European Capital Cities,Capital By Country Easy") {
             questionsList = getEuropeanCapitalByCountryEasy(this)
@@ -239,6 +254,9 @@ class GenericQuiz : AppCompatActivity() {
         if(uniqueQuizIdentifier == "Capital Cities,European Capital Cities,Capital By Country All"){
             questionsList = getEuropeanCapitalByCountryAll(this)
         }
+        if(uniqueQuizIdentifier == "Capital Cities,European Capital Cities,Country By Capital All"){
+            questionsList = getEuropeanCountryByCapitalAll(this)
+        }
         if (uniqueQuizIdentifier == "Capital Cities,Asian Capital Cities,Capital By Country Easy") {
             questionsList = getAsianCapitalByCountryEasy(this)
         }
@@ -250,6 +268,9 @@ class GenericQuiz : AppCompatActivity() {
         }
         if(uniqueQuizIdentifier == "Capital Cities,Asian Capital Cities,Capital By Country All"){
             questionsList = getAsianCapitalByCountryAll(this)
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,Asian Capital Cities,Country By Capital All"){
+            questionsList = getAsianCountryByCapitalAll(this)
         }
         if (uniqueQuizIdentifier == "Capital Cities,African Capital Cities,Capital By Country Easy") {
             questionsList = getAfricanCapitalByCountryEasy(this)
@@ -263,6 +284,9 @@ class GenericQuiz : AppCompatActivity() {
         if(uniqueQuizIdentifier == "Capital Cities,African Capital Cities,Capital By Country All"){
             questionsList = getAfricanCapitalByCountryAll(this)
         }
+        if(uniqueQuizIdentifier == "Capital Cities,African Capital Cities,Country By Capital All"){
+            questionsList = getAfricanCountryByCapitalAll(this)
+        }
 
         if (uniqueQuizIdentifier == "Capital Cities,Oceania Capital Cities,Capital By Country Easy") {
             questionsList = getOceaniaCapitalByCountryEasy(this)
@@ -273,6 +297,9 @@ class GenericQuiz : AppCompatActivity() {
         if(uniqueQuizIdentifier == "Capital Cities,Oceania Capital Cities,Capital By Country All"){
             questionsList = getOceaniaCapitalByCountryAll(this)
         }
+        if(uniqueQuizIdentifier == "Capital Cities,Oceania Capital Cities,Country By Capital All"){
+            questionsList = getOceaniaCountryByCapitalAll(this)
+        }
         if(uniqueQuizIdentifier == "Capital Cities,North American Capital Cities,Capital By Country Easy"){
             questionsList = getNorthAmericanCapitalByCountryEasy(this)
         }
@@ -282,6 +309,9 @@ class GenericQuiz : AppCompatActivity() {
         if(uniqueQuizIdentifier == "Capital Cities,North American Capital Cities,Capital By Country All"){
             questionsList = getNorthAmericanCapitalByCountryAll(this)
         }
+        if(uniqueQuizIdentifier == "Capital Cities,North American Capital Cities,Country By Capital All"){
+            questionsList = getNorthAmericanCountryByCapitalAll(this)
+        }
         if(uniqueQuizIdentifier == "Capital Cities,South American Capital Cities,Capital By Country Easy"){
             questionsList = getSouthAmericanCapitalByCountryEasy(this)
         }
@@ -290,6 +320,15 @@ class GenericQuiz : AppCompatActivity() {
         }
         if(uniqueQuizIdentifier == "Capital Cities,South American Capital Cities,Capital By Country All"){
             questionsList = getSouthAmericanCapitalByCountryAll(this)
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,South American Capital Cities,Country By Capital All"){
+            questionsList = getSouthAmericanCountryByCapitalAll(this)
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,All Capital Cities,Capital By Country"){
+            questionsList = getAllCapitalByCountry(this)
+        }
+        if(uniqueQuizIdentifier == "Capital Cities,All Capital Cities,Country By Capital"){
+            questionsList = getAllCountryByCapital(this)
         }
         if(uniqueQuizIdentifier == "Capital Cities,Capital City General Knowledge"){
             questionsList = getCapitalCityGK(this)
@@ -313,6 +352,16 @@ class GenericQuiz : AppCompatActivity() {
         if(uniqueQuizIdentifier == "History,Wars and Conflicts,English Civil War"){
             questionsList = getHistoryEnglishCivilWarQuestions(this)
         }
+        if(uniqueQuizIdentifier == "History,Monarchs Of England(and UK)"){
+            questionsList = getHistoryMonarchsQuestions(this)
+        }
+        if(uniqueQuizIdentifier == "History,Ancient History"){
+            questionsList = getHistoryAncientHistoryQuestions(this)
+        }
+        if(uniqueQuizIdentifier == "History,History General Knowledge"){
+            questionsList = getHistoryGKQuestions(this)
+        }
+
         randomiseQuestions()
         askQuestion()
     }

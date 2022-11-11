@@ -25,6 +25,9 @@ import com.example.ultimatetrivia.Constants.getUSStatesTopics
 import com.example.ultimatetrivia.CapitalCityConstants.getAfricanCapitalCitiesHighScores
 import com.example.ultimatetrivia.CapitalCityConstants.getAfricanCapitalCitiesProgressCount
 import com.example.ultimatetrivia.CapitalCityConstants.getAfricanCapitalCitiesSubTopics
+import com.example.ultimatetrivia.CapitalCityConstants.getAllCapitalCitiesHighScores
+import com.example.ultimatetrivia.CapitalCityConstants.getAllCapitalCitiesProgressCount
+import com.example.ultimatetrivia.CapitalCityConstants.getAllCapitalCitiesSubTopics
 import com.example.ultimatetrivia.CapitalCityConstants.getAsianCapitalCitiesHighScores
 import com.example.ultimatetrivia.CapitalCityConstants.getAsianCapitalCitiesProgressCount
 import com.example.ultimatetrivia.CapitalCityConstants.getAsianCapitalCitiesSubTopics
@@ -146,6 +149,12 @@ class Topics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
             highScores = getSouthAmericanCapitalCitiesHighScores(this)
             progressScores = getSouthAmericanCapitalCitiesProgressCount(this)
         }
+        else if (a == "Capital Cities,All Capital Cities"){
+            list = getAllCapitalCitiesSubTopics()
+            images = arrayListOf()
+            highScores = getAllCapitalCitiesHighScores(this)
+            progressScores = getAllCapitalCitiesProgressCount(this)
+        }
         //History SubTopics Display
         else if (a == "History,Wars and Conflicts"){
             list = getHistoryWarsAndConflictsSubTopics()
@@ -172,34 +181,38 @@ class Topics : AppCompatActivity(), ItemAdapter.OnItemCLickListener{
 
     override fun onItemClick(position: Int) {
 
+        val parentTopicName = this.intent.getStringExtra("QuizPath")
+        val currentTopicName = list.get(position)
+
         //When a button is clicked we move to the question screen
-        if(list.get(position) == "EXIT"){
+        if(currentTopicName == "EXIT"){
             finish();
             return
         }
-        val topicName = this.intent.getStringExtra("QuizPath")
+
 
 
         //LAUNCHES A SUBTOPIC MENU
 
+        //The first statement if for topics within capital cities and history that don't want to launch into a submenu, just a straight quiz
         //This is the only capital city topic that doesn't launch subtopics so we use a catching if statemnet
-        if(topicName == "Capital Cities" && list.get(position) == "Capital City General Knowledge"){
+        if(currentTopicName == "Capital City General Knowledge"){
             val intent = Intent(this, GenericQuiz::class.java)
-            val quizPath = (topicName+","+list.get(position))
+            val quizPath = (parentTopicName+","+currentTopicName)
             intent.putExtra("QuizPath", quizPath)
             startActivity(intent)
         }
 
-        else if(topicName == "Capital Cities" || topicName == "History"){
+        else if(parentTopicName == "Capital Cities" || currentTopicName == "Wars and Conflicts"){
             val intent = Intent(this, Topics::class.java)
-            val quizPath = (topicName+","+list.get(position))
+            val quizPath = (parentTopicName+","+list.get(position))
             intent.putExtra("QuizPath",quizPath)
             startActivity(intent)
         }
         //Starts the Quiz and passes through the path so it can be found in the GenericQuiz Class.
         else{
             val intent = Intent(this, GenericQuiz::class.java)
-            val quizPath = (topicName+","+list.get(position))
+            val quizPath = (parentTopicName+","+list.get(position))
             intent.putExtra("QuizPath", quizPath)
             startActivity(intent)
         }

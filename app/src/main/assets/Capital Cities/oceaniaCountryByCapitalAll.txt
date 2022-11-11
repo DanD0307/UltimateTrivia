@@ -1,0 +1,14 @@
+Apia is the capital of which country?#Samoa
+Canberra is the capital of which country?#Australia
+Funafuti is the capital of which country?#Tuvalu
+Honiara is the capital of which country?#Solomon Islands
+Majuro is the capital of which country?#Marshall Islands
+Ngerulmud is the capital of which country?#Palau
+Nuku'alofa is the capital of which country?#Tonga
+Palikir is the capital of which country?#Federates States of Micronesia#Micronesia
+Port Moresby is the capital of which country?#Papua New Guinea
+Port Vila is the capital of which country?#Vanuatu
+South Tarawa is the capital of which country?#Kiribati
+Suva is the capital of which country?#Fiji
+Wellington is the capital of which country?#New Zealand
+Yaren is the de facto capital of which country?#Nauru

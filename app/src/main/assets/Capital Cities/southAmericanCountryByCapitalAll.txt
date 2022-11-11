@@ -1,0 +1,12 @@
+Asuncion is the capital of which country?#Paraguay
+Bogota is the capital of which country?#Colombia
+Brasilia is the capital of which country?#Brazil
+Buenos Aires is the capital of which country?#Argentina
+Caracas is the capital of which country?#Venezuela
+Georgetown is the capital of which country?#Guyana
+Lima is the capital of which country?#Peru
+Montevideo is the capital of which country?#Uraguay
+Paramaribo is the capital of which country?#Suriname
+Quito is the capital of which country?#Ecuador
+Santiago is the capital of which country?#Chile
+Sucre is the capital of which country?#Bolivia

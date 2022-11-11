@@ -97,6 +97,26 @@ object HistoryConstants{
         return list
     }
 
+    //Other History Questions
+    fun getHistoryMonarchsQuestions(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS: InputStream = manager.open("History/monarchsQuiz.txt")
+        val list = returnArrayList(IS)
+        return list
+    }
+    fun getHistoryAncientHistoryQuestions(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS: InputStream = manager.open("History/ancientHistory.txt")
+        val list = returnArrayList(IS)
+        return list
+    }
+    fun getHistoryGKQuestions(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS: InputStream = manager.open("History/historyGK.txt")
+        val list = returnArrayList(IS)
+        return list
+    }
+
     //This function takes an inputstream and returns a nice clean arraylist
     fun returnArrayList(IS:InputStream):ArrayList<Array<ArrayList<String>>>{
         var list = arrayListOf<Array<ArrayList<String>>>()

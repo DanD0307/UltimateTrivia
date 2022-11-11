@@ -43,11 +43,11 @@ object Constants {
 
     fun getCapitalCitiesTopics():ArrayList<String>{
 
-        val subTopicTitles = arrayListOf("European Capital Cities","Asian Capital Cities","African Capital Cities","Oceania Capital Cities","North American Capital Cities","South American Capital Cities", "Capital City General Knowledge","EXIT")
+        val subTopicTitles = arrayListOf("European Capital Cities","Asian Capital Cities","African Capital Cities","Oceania Capital Cities","North American Capital Cities","South American Capital Cities","All Capital Cities", "Capital City General Knowledge","EXIT")
         return subTopicTitles
     }
     fun getCapitalCitiesImages():ArrayList<Int>{
-        val images = arrayListOf(R.drawable.europe,R.drawable.asianew,R.drawable.africa,R.drawable.oceania,R.drawable.northamerica,R.drawable.southamerica,R.drawable.eiffeltower)
+        val images = arrayListOf(R.drawable.europe,R.drawable.asianew,R.drawable.africa,R.drawable.oceania,R.drawable.northamerica,R.drawable.southamerica,R.drawable.earth,R.drawable.eiffeltower)
         return images
     }
 
@@ -281,6 +281,12 @@ object Constants {
     fun returnGK4(context:Context):ArrayList<Array<ArrayList<String>>> {
         val manager: AssetManager = context.getAssets()
         val IS : InputStream = manager.open("General Knowledge/gk4.txt")
+        val list = returnArrayList(IS)
+        return list
+    }
+    fun returnGK5(context:Context):ArrayList<Array<ArrayList<String>>> {
+        val manager: AssetManager = context.getAssets()
+        val IS : InputStream = manager.open("General Knowledge/gk5.txt")
         val list = returnArrayList(IS)
         return list
     }
